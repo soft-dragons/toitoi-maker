@@ -1,0 +1,15 @@
+current directory: /Users/yuki/ghq/github.com/soft-dragons/toitoi-maker/vendor/bundle/gems/websocket-driver-0.7.5/ext/websocket-driver
+/Users/yuki/.rbenv/versions/2.6.6/bin/ruby -I /Users/yuki/.rbenv/versions/2.6.6/lib/ruby/2.6.0 -r ./siteconf20220318-3334-1u2i37g.rb extconf.rb
+creating Makefile
+
+current directory: /Users/yuki/ghq/github.com/soft-dragons/toitoi-maker/vendor/bundle/gems/websocket-driver-0.7.5/ext/websocket-driver
+make "DESTDIR=" clean
+
+current directory: /Users/yuki/ghq/github.com/soft-dragons/toitoi-maker/vendor/bundle/gems/websocket-driver-0.7.5/ext/websocket-driver
+make "DESTDIR="
+compiling websocket_mask.c
+linking shared-object websocket_mask.bundle
+
+current directory: /Users/yuki/ghq/github.com/soft-dragons/toitoi-maker/vendor/bundle/gems/websocket-driver-0.7.5/ext/websocket-driver
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 websocket_mask.bundle ./.gem.20220318-3334-noo64d
