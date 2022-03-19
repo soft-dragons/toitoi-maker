@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'homes#top'
 
-  resources :problems, only: [:new, :edit, :show]
-  get 'myProblem' => 'problems#myProblem'
-  get 'test' => 'problems#test'
-  get 'toitoi' => 'problems#toitoi'
-
+  resources :problems
+  get 'myProblem' => 'problems#myProblem',   as: 'myProblem'
+  get 'test' => 'problems#test',             as: 'test'
+  get 'test_index' => 'problems#test_index', as: 'test_index'
+  get 'toitoi' => 'problems#toitoi',         as: 'toitoi'
 end
