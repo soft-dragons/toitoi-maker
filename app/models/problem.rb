@@ -22,13 +22,18 @@ class Problem < ApplicationRecord
     end
   end
 
+  def calc_rate(problem)
+    correct = problem.answers.whewe(result: true).size
+    total = problem.answers.size
+    #正当率
+    rate = correct / total * 100
+    return rate
+  end
+
   def divide_problems
     problems = Problem.all
     problems.each do |problem|
-      correct = problem.answers.whewe(result: true).size
-      total = problem.answers.size
-      #回答率 = sの回答がtrueのみの数 / sの全回答数 * 100
-      rate = correct / total * 100
+      rate = calc_rate(problem)
 
       high_level = []
       medium_level = []

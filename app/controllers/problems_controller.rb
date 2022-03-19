@@ -21,6 +21,8 @@ class ProblemsController < ApplicationController
   end
 
   def show #問題の詳細画面
+    @feedbacks = @problem.feedbacks.order(created_at: 'desc')
+    @rank = calc_rate(@problem)
   end
 
   def edit #問題の編集画面
