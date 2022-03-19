@@ -35,6 +35,10 @@ main {
   border: 1px solid black;
 }
 
+a {
+  display: block;
+}
+
 .mask {
   background: black;
   position: absolute;
@@ -170,3 +174,4 @@ main {
   background: white;
   color: #232f34;
 }
+

@@ -8,27 +8,30 @@
     Menu
   </div>
   <hr>
-  <div class="menu-list-text">
+  <%= link_to root_path, data: {"turbolinks" => false}, class: "menu-list-text", style: "text-decoration: none;", local: true do %>
+    ホーム
+  <% end %>
+  <%= link_to new_problem_path, data: {"turbolinks" => false}, class: "menu-list-text", style: "text-decoration: none;", local: true do %>
     問題を作る
-  </div>
-  <div class="menu-list-text">
+  <% end %>
+  <%= link_to myProblem_path, data: {"turbolinks" => false}, class: "menu-list-text", style: "text-decoration: none;", local: true do %>
     自分の投稿一覧
-  </div>
-  <div class="menu-list-text">
+  <% end %>
+  <%= link_to test_path, data: {"turbolinks" => false}, class: "menu-list-text", style: "text-decoration: none;", local: true do %>
     本日の復習
-  </div>
-  <div class="menu-list-text">
+  <% end %>
+  <%= link_to toitoi_path, data: {"turbolinks" => false}, class: "menu-list-text", style: "text-decoration: none;", local: true do %>
     問問道場
-  </div>
+  <% end %>
 </div>
-<div class="header-point-posi">
+<%= link_to edit_user_registration_path, data: {"turbolinks" => false}, class: "header-point-posi", style: "text-decoration: none; color: white;", local: true do %>
   <div class="header-user">
     ○○○○さん
   </div>
   <div class="header-point">
     ポイント：400pt
   </div>
-</div>
+<% end %>
 <div class="header-rank-posi">
   <div class="header-rank">
     20位
@@ -64,8 +67,12 @@
 
   const headerRankIndex = document.getElementById('header-rank-index');
   const headerRankLists = document.getElementById('header-rank-lists');
-  headerRankIndex.addEventListener('click', function () {
-    headerRankLists.classList.toggle('rank-show');
+  document.addEventListener('click', (e) => {
+    if(!e.target.closest('.header-rank-index')) {
+      headerRankLists.classList.remove('rank-show');
+    } else {
+      headerRankLists.classList.add('rank-show');
+    }
   });
 
 </script>
