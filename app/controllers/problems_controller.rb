@@ -32,8 +32,10 @@ class ProblemsController < ApplicationController
   end
 
   def show #問題の詳細画面
+    @problem = Problem.find(params[:id])
+    @feedback = Feedback.new
     @feedbacks = @problem.feedbacks.order(created_at: 'desc')
-    @rate = calc_rate(@problem)
+    @rate = Problem.new.calc_rate(@problem)
   end
 
   def edit #問題の編集画面

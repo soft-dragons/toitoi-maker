@@ -12,6 +12,6 @@ Rails.application.routes.draw do
   get 'toitoi' => 'problems#toitoi',         as: 'toitoi'
   resources :problems do
     resources :answers, only: [:create]
-    resources :feedback, only: [:create, :update, :destroy]
+    resources :feedbacks, only: [:create, :update, :destroy]
   end
 end

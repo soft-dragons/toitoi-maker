@@ -286,3 +286,59 @@ table td {
   border: 1px solid white;
   border-radius: 5px;
 }
+
+.feedback-form-button {
+  width: 200px;
+  height: 30p;
+  background: #66a8e2;
+  color: white;
+  text-align: center;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.feedback-form-button {
+  width: 200px;
+  height: 30p;
+  background: #66a8e2;
+  color: white;
+  text-align: center;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #66a8e2;
+  cursor: pointer;
+}
+
+.feedback-form-button:hover {
+  transition: 0.8s all;
+  background: white;
+  color: #66a8e2;
+}
+
+.feeback-form {
+  display: none;
+  position: fixed;
+  top: 150px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 600px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.feedback-delete {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  border: 1px solid rgb(243, 117, 117);
+  border-radius: 5px;
+  color: red;
+  width: 80px;
+  text-align: center;
+  font-size: 13px;
+}
