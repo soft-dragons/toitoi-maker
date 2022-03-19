@@ -9,7 +9,35 @@
 require 'faker'
 Faker::Config.locale = :ja
 
-20.times do |n|
+user = User.create!(
+  name: Faker::Name.unique.name,
+  email: "test@123",
+  password: "test123",
+  point: 15
+)
+
+problem = Problem.create!(
+  user_id: user.id,
+  title: "といとい問題そのいち",
+  statement: "問題の内容が記載されます。問題の内容が記載されます。\n問題の内容が記載されます。問題の内容が記載されます。\n",
+  answer: Faker::Hacker.adjective,
+  incorrect1: Faker::Computer.type,
+  incorrect2: Faker::Hacker.ingverb,
+  created_at: Date.today - 6,
+  updated_at: Date.today - 6
+)
+
+3.times do |n|
+  Answer.create!(
+    user_id: user.id,
+    problem_id: problem.id,
+    result: false,
+    created_at: Date.today - 6,
+    updated_at: Date.today - 3
+    )
+end
+
+19.times do |n|
   User.create!(
     name: Faker::Name.unique.name,
     email: Faker::Internet.unique.email,
@@ -18,7 +46,35 @@ Faker::Config.locale = :ja
   )
 end
 
-50.times do |n|
+20.times do |n|
+  User.where('id = ?', rand(User.first.id .. User.last.id)).each do |user|
+    problem = user.problems.create!(
+      title: "といとい問題"+(n+1).to_s,
+      statement: "問題の内容が記載されます。問題の内容が記載されます。\n問題の内容が記載されます。問題の内容が記載されます。\n",
+      answer: Faker::Hacker.adjective,
+      incorrect1: Faker::Computer.type,
+      incorrect2: Faker::Hacker.ingverb,
+      created_at: Date.today - 6,
+      updated_at: Date.today - 6
+    )
+  end
+end
+
+20.times do |n|
+  User.where('id = ?', rand(User.first.id .. User.last.id)).each do |user|
+    problem = user.problems.create!(
+      title: "といとい問題"+(n+1).to_s,
+      statement: "問題の内容が記載されます。問題の内容が記載されます。\n問題の内容が記載されます。問題の内容が記載されます。\n",
+      answer: Faker::Hacker.adjective,
+      incorrect1: Faker::Computer.type,
+      incorrect2: Faker::Hacker.ingverb,
+      created_at: Date.today - 3,
+      updated_at: Date.today - 3
+    )
+  end
+end
+
+10.times do |n|
   User.where('id = ?', rand(User.first.id .. User.last.id)).each do |user|
     problem = user.problems.create!(
       title: "といとい問題"+(n+1).to_s,

@@ -70,7 +70,7 @@ class ProblemsController < ApplicationController
     answer_list = current_user.answers
     answer_list.each do |answer|
       if answer.nil?
-          rate = calc_rate(answer.problem_id)
+        rate = Problem.new.calc_rate(Problem.find(answer.problem_id))
           if rete == 0
             no_correct_answers.push(answer)
           end
