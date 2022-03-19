@@ -1,3 +1,59 @@
 // Place all the styles related to the problems controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+//新規登録画面
+.problem-main {
+  text-align: center;
+}
+
+.problem-title {
+  margin: 30px 0;
+}
+
+.new_problem {
+  width: 400px;
+  margin: 0 auto;
+}
+
+.problem-field {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.problem-form {
+  width: 100%;
+}
+
+.problem-area {
+  height: 200px;
+}
+
+.problem-field-email {
+  text-align: left;
+  margin-bottom: 40px;
+}
+
+.use-submit {
+  width: 100px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.problem-submit-button {
+  background: #4a6572;
+  color: white;
+  width: 150px;
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+.problem-submit-button:hover {
+  transition: 1s all;
+  background: white;
+  border: 1px solid #4a6572;
+  color: #232f34;
+}

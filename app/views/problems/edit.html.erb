@@ -1,0 +1,46 @@
+<section class="problem-main">
+  <h2 class="problem-title">問題を編集</h2>
+
+  <%= form_with model: @problem, url: problem_path(@problem), method: :patch, local: true do |f| %>
+
+    <div class="problem-field">
+      <div class="problem-label">
+        タイトル
+      </div>
+      <%= f.text_field :title, autofocus: true, autocomplete: "title", class: "problem-form" %>
+    </div>
+
+    <div class="problem-field">
+      <div class="problem-label">
+        問題文
+      </div>
+      <%= f.text_area :statement, autocomplete: "statement", class: "problem-form problem-area" %>
+    </div>
+
+    <div class="problem-field">
+      <div class="problem-label">
+        正解
+      </div>
+      <%= f.text_field :answer, autocomplete: "answer", class: "problem-form" %>
+    </div>
+
+    <div class="problem-field">
+      <div class="problem-label">
+        不正解①
+      </div>
+      <%= f.text_field :incorrect1, autocomplete: "incorrect1", class: "problem-form" %>
+    </div>
+
+    <div class="problem-field">
+      <div class="problem-label">
+        不正解②
+      </div>
+      <%= f.text_field :incorrect2, autocomplete: "incorrect2", class: "problem-form" %>
+    </div>
+
+    <div class="user-submit">
+      <%= f.submit "登録", class: "user-submit-button" %>
+    </div>
+  <% end %>
+
+</section>
