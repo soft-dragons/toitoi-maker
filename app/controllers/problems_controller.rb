@@ -17,6 +17,7 @@ class ProblemsController < ApplicationController
   end
 
   def toitoi #問問の問題一覧（初級/中級/上級）
+    @problems = Problem.all.order(created_at: 'desc')
   end
 
   def show #問題の詳細画面
@@ -46,9 +47,12 @@ class ProblemsController < ApplicationController
   end
 
   def myProblems #自分の問題一覧
+    @problems = Problem.where(user_id: current_user.id).order(created_at: 'desc')
   end
 
   def test_index #復習の問題一覧
+    answers = Answer.where(user_id: current_user.id, result: false)
+    @problems = Problem.where(answer_id: answers.ids)
   end
 
   def test #復習の問題詳細
