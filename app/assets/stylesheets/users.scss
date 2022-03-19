@@ -1,0 +1,50 @@
+.user-main {
+  text-align: center;
+}
+
+.user-title {
+  margin: 30px 0;
+}
+
+.new_user {
+  width: 400px;
+  margin: 0 auto;
+}
+
+.user-field {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.user-form {
+  width: 100%;
+}
+
+.user-field-email {
+  text-align: left;
+  margin-bottom: 40px;
+}
+
+.use-submit {
+  width: 100px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.user-submit-button {
+  background: #4a6572;
+  color: white;
+  width: 150px;
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+.user-submit-button:hover {
+  transition: 1s all;
+  background: white;
+  border: 1px solid #4a6572;
+  color: #232f34;
+}
