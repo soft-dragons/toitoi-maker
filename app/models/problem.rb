@@ -9,4 +9,16 @@ class Problem < ApplicationRecord
   validates :answer, presence: true, length: { maximum: 30 }
   validates :incorrect1, presence: true, length: { maximum: 30 }
   validates :incorrect2, presence: true, length: { maximum: 30 }
+
+  def answer_check
+    if self.answer == self.incorrect1
+      return false
+    elsif self.answer == self.incorrect2
+      return false
+    elsif self.incorrect1 == self.incorrect2
+      return false
+    else
+      return true
+    end
+  end
 end
