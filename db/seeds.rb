@@ -37,11 +37,9 @@ end
       problem_id: problem.id
       result: Faker::Boolean.boolean
     )
-    unless problem.user_id == user.id
-      feedback = user.feedbacks.create!(
-        problem_id: problem.user_id
-        text: "コメントです！コメントです！\nコメントです！コメントです！\n"
-      )
-    end
+    feedback = user.feedbacks.create!(
+      problem_id: problem.user_id
+      text: "コメントです！コメントです！\nコメントです！コメントです！\n"
+    ) unless problem.user_id == user.id
   end
 end
