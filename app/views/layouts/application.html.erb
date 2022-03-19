@@ -10,6 +10,34 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <div class="header-menu">
+        MENU
+      </div>
+      <div class="header-point-posi">
+        <div class="header-user">
+          ○○○○さん
+        </div>
+        <div class="header-point">
+          ポイント：400pt
+        </div>
+      </div>
+      <div class="header-rank-posi">
+        <div class="header-rank">
+          20位
+        </div>
+        <div class="header-rank-index">
+          ランキング一覧 ▼
+        </div>
+      </div>
+      <div class="header-devise">
+        <div class="header-devise-button">
+          ログイン
+        </div>
+      </div>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>
