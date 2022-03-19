@@ -17,57 +17,39 @@ class ProblemsController < ApplicationController
   end
 
   def toitoi #問問の問題一覧（初級/中級/上級）
-    problems = Problem.all
-
-    problems.each do |s|
-      a = problems.where(problems.answer.result: true).count
-      b = s.answer.count
-      #回答率 = sの回答がtrueのみの数 / sの全回答数 * 100
-      rate = a / b * 100
-
-      if rate >= 70
-        @golds = s
-      elsif rate >= 40
-        @silvers = s
-      else
-        @bronzes = s
-      end
-    end
+    @high, @medium, @low = divide_problems
   end
 
   def show #問題の詳細画面
-    @problem = Problem.find(params[:id])
+    @feedbacks = @problem.feedbacks.order(created_at: 'desc')
+    @rank = calc_rate(@problem)
   end
 
   def edit #問題の編集画面
-    @problem = Problem.find(params[:id])
     if current_user.id != @problem.user_id
-      redirect_to problem_path(@problem), flash: { danger: '投稿者が異なるため編集できません。'}
-    else
-      #@problem = Problem.where(problem_id : @problem.id)
+      redirect_to problem_path(@problem), flash: { danger: '投稿者が異なるため編集できません'}
     end
   end
 
   def update
     if @problem.update(problem_params)
-      redirect_to show_path(@problem), flash: { success: '問題を更新しました！'}
+      redirect_to problem_path(@problem), flash: { success: '問題を更新しました！'}
     else
       render :edit
     end
   end
 
-  def destroy
-    @problem.destroy
-    redirect_to myProblem_path
-    #, flash: { success; '問題を削除しました。'}
+  def myProblems #自分の問題一覧
+    @problems = current_user.problems.order(created_at: 'desc')
   end
 
-  def myProblems #自分の問題一覧
-    @problems = Problem.where(user_id: current_user.id).order(created_at: 'desc')
+  def destroy
+    @problem.destroy
+    redirect_to myProblems_path, flash: { success: '問題を削除しました'}
   end
 
   def test_index #復習の問題一覧
-    answers = Answer.where(user_id: current_user.id, result: false)
+    answers = current_user.answers.where(result: false)
     @problems = Problem.where(answer_id: answers.ids)
   end
 
