@@ -7,5 +7,8 @@ class CreateFeedbacks < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
+
+    add_index :feedbacks, :user_id,    unique: true
+    add_index :feedbacks, :problem_id, unique: true
   end
 end
