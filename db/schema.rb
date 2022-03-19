@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_19_020433) do
+ActiveRecord::Schema.define(version: 2022_03_19_092620) do
 
   create_table "answers", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 2022_03_19_020433) do
     t.boolean "result", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["problem_id"], name: "index_answers_on_problem_id", unique: true
-    t.index ["user_id"], name: "index_answers_on_user_id", unique: true
+    t.index ["problem_id"], name: "index_answers_on_problem_id"
+    t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
   create_table "feedbacks", force: :cascade do |t|
@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 2022_03_19_020433) do
     t.text "text", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["problem_id"], name: "index_feedbacks_on_problem_id", unique: true
-    t.index ["user_id"], name: "index_feedbacks_on_user_id", unique: true
+    t.index ["problem_id"], name: "index_feedbacks_on_problem_id"
+    t.index ["user_id"], name: "index_feedbacks_on_user_id"
   end
 
   create_table "problems", force: :cascade do |t|
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2022_03_19_020433) do
     t.string "incorrect2", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_problems_on_user_id", unique: true
+    t.index ["user_id"], name: "index_problems_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
