@@ -167,11 +167,12 @@ a {
   border: 1px solid white;
   border-radius: 5px;
   cursor: pointer;
+  color: white;
 }
 
 .header-devise-button:hover {
-  transition: 1s all;
+  transition: 0.7s all;
   background: white;
   color: #232f34;
+  border: 1px solid #232f34;
 }
-

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root 'homes#top'
 
   resources :problems
-  get 'myProblem' => 'problems#myProblem',   as: 'myProblem'
+  get 'myProblems' => 'problems#myProblems',   as: 'myProblems'
   get 'test' => 'problems#test',             as: 'test'
   get 'test_index' => 'problems#test_index', as: 'test_index'
   get 'toitoi' => 'problems#toitoi',         as: 'toitoi'

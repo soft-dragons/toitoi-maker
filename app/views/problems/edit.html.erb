@@ -38,8 +38,11 @@
       <%= f.text_field :incorrect2, autocomplete: "incorrect2", class: "problem-form" %>
     </div>
 
-    <div class="user-submit">
-      <%= f.submit "登録", class: "user-submit-button" %>
+    <div class="problem-edit-submit">
+      <%= link_to myProblems_path, data: {"turbolinks" => false}, class: "problem-return", style: "text-decoration:none;", local: true do %>
+        戻る
+      <% end %>
+      <%= f.submit "登録", class: "problem-submit-button" %>
     </div>
   <% end %>
 

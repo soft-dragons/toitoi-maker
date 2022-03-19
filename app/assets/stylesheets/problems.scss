@@ -5,6 +5,8 @@
 //新規登録画面
 .problem-main {
   text-align: center;
+  width: 500px;
+  margin: 0 auto;
 }
 
 .problem-title {
@@ -34,8 +36,7 @@
   margin-bottom: 40px;
 }
 
-.use-submit {
-  width: 100px;
+.problem-submit {
   text-align: center;
   border-radius: 5px;
 }
@@ -56,4 +57,188 @@
   background: white;
   border: 1px solid #4a6572;
   color: #232f34;
+}
+
+//問題編集画面
+.problem-edit-submit {
+  display: flex;
+  display: flex;
+  margin: 0 auto;
+  width: 300px;
+}
+
+.problem-return {
+  background: white;
+  color: #232f34;
+  width: 150px;
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #4a6572;
+  cursor: pointer;
+}
+
+.problem-return {
+  margin-right: 10px;
+}
+
+//問題一覧画面
+.problem-index {
+  text-align: center;
+  width: 800px;
+  margin: 0 auto;
+}
+
+table {
+  border-collapse: collapse;
+}
+table th,
+table td {
+  border: solid 1px black;
+}
+
+.problem-create {
+  width: 10%;
+}
+
+.problem-statement {
+  width: 70%;
+}
+
+.problem-update {
+  width: 10%;
+}
+
+.problem-result {
+  width: 10%;
+}
+
+.problem-statement-align {
+  text-align: left;
+  padding: 10px;
+}
+
+.problem-statement-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.problem-table {
+  cursor: pointer;
+}
+
+.problem-table {
+  cursor: pointer;
+}
+
+.problem-table:hover {
+  transition: 0.2s all;
+  background: #c7e3fb;
+  //color: white;
+}
+
+//問題詳細画面
+.problem-show {
+  width: 700px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.problem-show-title {
+  font-size: 1.5rem;
+  text-align: left;
+  border: 1px solid black;
+}
+
+.problem-show-text {
+  text-align: left;
+  border: 1px solid black;
+}
+
+.problem-show-answers {
+  display: flex;
+  margin-top: 30px;
+  height: 70px;
+}
+
+.show-answer {
+  width: 215px;
+  height: 70px;
+  margin-right: 30px;
+}
+
+.show-answer-last {
+  width: 210px;
+  height: 50px;
+}
+
+.show-answer-title {
+  text-align: left;
+}
+
+.show-answer-text {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.problem-show-bottom {
+  display: flex;
+  margin: 30px 0 10px 0;
+}
+
+.problem-show-data {
+  width: 300px;
+}
+
+.problem-show-buttons {
+  width: 200px;
+}
+
+.problem-show-data {
+  text-align: left;
+}
+
+.problem-show-buttons {
+  display: flex;
+  margin: 0 0 0 auto;
+  width: 160px;
+  align-items: flex-end;
+}
+
+.problem-show-button {
+  width: 70px;
+  height: 30px;
+  border: 2px solid;
+  text-align: center;
+  margin-left: 10px;
+}
+
+.problem-edit-button:hover {
+  transition: 0.8s all;
+  color: rgb(5, 184, 5);
+  border: 2px solid rgb(5, 184, 5);
+}
+
+.problem-edit-destroy:hover {
+  transition: 0.8s all;
+  color: red;
+  border: 2px solid red;
+}
+
+.feedback-index {
+  text-align: left;
+  margin: 30px 0;
+}
+
+.feedback-text {
+  text-align: left;
+  border: 1px solid black;
+  padding: 10px 10px 40px 10px;
+  position: relative;
+}
+
+.feedback-item {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
 }

@@ -9,7 +9,7 @@ class ProblemsController < ApplicationController
   def create
     @problem = current_user.problems.new(problem_params)
     if @problem.save
-      redirect_to problem_path(@problem), flash: { success: '問題を作成しました！'}
+      redirect_to myProblem_path, flash: { success: '問題を作成しました！'}
     else
       flash.now[:danger] = '問題を作成できませんでした'
       render :new
@@ -21,6 +21,7 @@ class ProblemsController < ApplicationController
   end
 
   def show #問題の詳細画面
+    @problem = Problem.find(params[:id])
   end
 
   def edit #問題の編集画面

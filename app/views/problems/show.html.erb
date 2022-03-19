@@ -1,0 +1,69 @@
+<section class="problem-show">
+  <h2 class="problem-title">問題詳細</h2>
+  <div class="problem-show-title">
+    <%= @problem.title %>
+  </div>
+  <div class="problem-show-text">
+    <%= simple_format(@problem.statement) %>
+  </div>
+  <div class="problem-show-answers">
+    <div class="show-answer">
+      <div class="show-answer-title">
+        正解
+      </div>
+      <div class="show-answer-text">
+        <%= @problem.answer %>
+      </div>
+    </div>
+    <div class="show-answer">
+      <div class="show-answer-title">
+        不正解①
+      </div>
+      <div class="show-answer-text">
+        <%= @problem.incorrect1 %>
+      </div>
+    </div>
+    <div class="show-answer-last">
+      <div class="show-answer-title">
+        不正解②
+      </div>
+      <div class="show-answer-text">
+        <%= @problem.incorrect2 %>
+      </div>
+    </div>
+  </div>
+  <div class="problem-show-bottom">
+    <div class="problem-show-data">
+      <div class="problem-show-data1">
+        正答率：
+      </div>
+      <div class="problem-show-data2">
+        投稿者：<%= @problem.user.name %>さん
+      </div>
+      <div class="problem-show-data3">
+        投稿日：<%= @problem.created_at.strftime('%-Y年%-m月%-d日') %>
+      </div>
+    </div>
+    <div class="problem-show-buttons">
+      <%= link_to problem_path(@problem), data: {"turbolinks" => false}, class: "problem-show-button problem-edit-button", style: "text-decoration: none;", local: true do %>
+        編集
+      <% end %>
+      <%= link_to problem_path(@problem), data: {"turbolinks" => false}, class: "problem-show-button problem-edit-destroy", style: "text-decoration: none;", local: true, data: { confirm: '問題を削除しますか？' } do %>
+        削除
+      <% end %>
+    </div>
+  </div>
+  <section class="feedback-index">
+    <h3 >
+      フィードバック一覧
+    </h3>
+    <% Problem.all.each do |problem| %>  <%# 仮で入れているだけです %>
+      <div class="feedback-text">
+        <%= problem.statement %>
+        <div class="feedback-item">
+          <%= problem.created_at.strftime('%-Y年%-m月%-d日') %>　<%= problem.user.name %>さん
+        </div>
+      </div>
+    <% end %>
+  </section>
+</section>
