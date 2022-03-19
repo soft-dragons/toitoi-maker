@@ -39,9 +39,9 @@ end
     )
     unless problem.user_id == user.id
       feedback = user.feedbacks.create!(
-       problem_id: problem.user_id
+        problem_id: problem.user_id
         text: "コメントです！コメントです！\nコメントです！コメントです！\n"
       )
-   end
+    end
   end
 end
