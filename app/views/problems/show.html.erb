@@ -1,3 +1,4 @@
+<div class="mask" id="feedback-mask"></div>
 <section class="problem-show">
   <h2 class="problem-title">問題詳細</h2>
   <div class="problem-show-title">
@@ -35,7 +36,7 @@
   <div class="problem-show-bottom">
     <div class="problem-show-data">
       <div class="problem-show-data1">
-        正答率：
+        正答率：<%= @rate %>%
       </div>
       <div class="problem-show-data2">
         投稿者：<%= @problem.user.name %>さん
@@ -54,16 +55,57 @@
     </div>
   </div>
   <section class="feedback-index">
-    <h3 >
-      フィードバック一覧
-    </h3>
-    <% Problem.all.each do |problem| %>  <%# 仮で入れているだけです %>
-      <div class="feedback-text">
-        <%= problem.statement %>
-        <div class="feedback-item">
-          <%= problem.created_at.strftime('%-Y年%-m月%-d日') %>　<%= problem.user.name %>さん
+    <div class="feedback-form-button" id="feedback-form-button">
+      フィードバックする
+    </div>
+    <div class="feeback-form" id="feeback-form">
+      <%= form_with model: @feedback, url: problem_feedbacks_path(problem_id: @problem.id), method: :post, local: true do |f| %>
+        <div class="problem-field">
+          <div class="problem-label">
+            フィードバック
+          </div>
+          <%= f.hidden_field :user_id, :value => @problem.user_id %>
+          <%= f.hidden_field :problem_id, :value => @problem.id %>
+          <%= f.text_area :text, autocomplete: "text", class: "problem-form problem-area" %>
         </div>
-      </div>
+
+        <div class="problem-submit">
+          <%= f.submit "登録", class: "problem-submit-button" %>
+        </div>
+      <% end %>
+    </div>
+    <script>
+      var feedbackFormButton = document.getElementById('feedback-form-button');
+      var feebackForm = document.getElementById('feeback-form');
+      var feebackMask = document.getElementById('feedback-mask');
+      feedbackFormButton.addEventListener('click', function () {
+        feebackForm.style.display = "block";
+        feebackMask.style.display = "block";
+        feebackMask.classList.add('mask-anime')
+      });
+      feebackMask.addEventListener('click', function () {
+        feebackForm.style.display = "none";
+        feebackMask.style.display = "none";
+        feebackMask.classList.remove('mask-anime')
+      });
+    </script>
+    <% if @feedbacks.any? %>
+      <h3 >
+        フィードバック一覧
+      </h3>
+      <% @feedbacks.each do |feedback| %>
+        <div class="feedback-text">
+          <%= feedback.text %>
+          <% if feedback.user_id == current_user.id %>
+            <%= link_to problem_feedback_path(problem_id: @problem.id, id: feedback.id), data: {"turbolinks" => false}, class: "feedback-delete", style: "text-decoration: none;", method: :delete, local: true, data: { confirm: 'フィードバックを取り消しますか？' } do %>
+              取り消し
+            <% end %>
+          <% end %>
+          <div class="feedback-item">
+            <%= feedback.created_at.strftime('%-Y年%-m月%-d日') %>　<%= feedback.user.name %>さん
+          </div>
+        </div>
+      <% end %>
     <% end %>
   </section>
 </section>

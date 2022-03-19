@@ -3,10 +3,14 @@ class FeedbacksController < ApplicationController
   before_action :set_feedback, only: [:update, :destroy]
 
   def create
-    feedback = Feedback.find(params[:id])
-    if feedback.save
-      redirect_to problem_path(feedback.problem_id)
+    @feedback = Feedback.new(feedback_params)
+    if @feedback.save
+      redirect_to problem_path(@feedback.problem_id)
     else
+      @feedback = Feedback.new
+      @problem = Problem.find(@feedback.problem_id)
+      @feedbacks = @problem.feedbacks.order(created_at: 'desc')
+      @rate = Problem.new.calc_rate(@problem)
       render 'problems/show'
     end
   end
@@ -32,6 +36,6 @@ class FeedbacksController < ApplicationController
   end
 
   def feedback_params
-    params.require(:feedback).permit(:text)
+    params.require(:feedback).permit(:text, :user_id, :problem_id)
   end
 end
