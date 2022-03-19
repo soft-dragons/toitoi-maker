@@ -35,6 +35,31 @@ main {
   border: 1px solid black;
 }
 
+.mask {
+  background: black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0;
+  display: none;
+  cursor: pointer;
+}
+
+.mask-anime {
+  animation: maskMenu 0.2s ease 0s 1 normal forwards;
+}
+
+@keyframes maskMenu {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
 .header-menu {
   width: 80px;
   text-align: center;
@@ -46,6 +71,49 @@ main {
   content: url(assets/メニュー.png);
   width: 25px;
   height: 25px;
+}
+
+.header-menu-lists {
+  width: 300px;
+  height: 100vh;
+  position: absolute;
+  left: -300px;
+  top: 0;
+  background: #232f34;
+  opacity: 0;
+}
+
+.header-menu-anime {
+  animation: headerMenu 0.2s ease 0s 1 normal forwards;
+}
+
+@keyframes headerMenu {
+  0% {
+    opacity: 0;
+    left: -300px;
+  }
+  100% {
+    opacity: 1;
+    left: 0;
+  }
+}
+
+.menu-list-title {
+  font-size: 1.5rem;
+  padding: 10px 20px;
+}
+
+.menu-list-text {
+  margin: 20px 0;
+  font-size: 1.5rem;
+  padding: 10px 20px;
+  color: white;
+}
+
+.menu-list-text:hover {
+  transition: 1s all;
+  background: white;
+  color: #232f34;
 }
 
 .header-point-posi {
@@ -61,6 +129,23 @@ main {
 
 .header-rank {
   font-size: 2rem;
+}
+
+.header-rank-lists {
+  width: 300px;
+  height: 400px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background: white;
+  border: 1px solid black;
+  z-index: 10;
+  display: none;
+}
+
+.rank-show {
+  display: block;
 }
 
 .header-devise {

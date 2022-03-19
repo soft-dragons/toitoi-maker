@@ -2,12 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-//ログイン前
-.home-devise-title {
+.home-title {
   text-align: center;
   margin-top: 100px;
 }
 
+h1 {
+  font-size: 40px;
+}
+
+//ログイン前
 .devise-buttons {
   display: flex;
   width: 450px;
@@ -24,7 +28,6 @@
   padding: 20px 10px;
   border-radius: 10px;
   color: white;
-  cursor: pointer;
 }
 
 .devise-link-button:hover {
@@ -36,4 +39,28 @@
 
 .devise-button-title {
   margin-bottom: 10px;
+}
+
+//ログイン後のホーム
+.home-lists {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.home-list-text {
+  margin: 10px auto;
+  cursor: pointer;
+  width: 150px;
+}
+
+.home-list-text {
+  margin: 10px auto;
+  cursor: pointer;
+  width: 150px;
+}
+
+.home-list-text:hover {
+  transition: 0.5s all;
+  background: #232f34;
+  color: white;
 }

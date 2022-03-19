@@ -1,0 +1,71 @@
+
+
+<div class="header-menu" id="header-menu">
+  MENU
+</div>
+<div class="header-menu-lists" id="header-menu-lists">
+  <div class="menu-list-title">
+    Menu
+  </div>
+  <hr>
+  <div class="menu-list-text">
+    問題を作る
+  </div>
+  <div class="menu-list-text">
+    自分の投稿一覧
+  </div>
+  <div class="menu-list-text">
+    本日の復習
+  </div>
+  <div class="menu-list-text">
+    問問道場
+  </div>
+</div>
+<div class="header-point-posi">
+  <div class="header-user">
+    ○○○○さん
+  </div>
+  <div class="header-point">
+    ポイント：400pt
+  </div>
+</div>
+<div class="header-rank-posi">
+  <div class="header-rank">
+    20位
+  </div>
+  <div class="header-rank-index" id="header-rank-index">
+    ランキング一覧 ▼
+  </div>
+  <div class="header-rank-lists" id="header-rank-lists">
+    ここにランキング一覧
+  </div>
+</div>
+<div class="header-devise">
+  <div class="header-devise-button">
+    ログイン
+  </div>
+</div>
+
+<script>
+  const mask = document.getElementById('mask');
+  const headerMenu = document.getElementById('header-menu');
+  const headerMenuLists = document.getElementById('header-menu-lists');
+  headerMenu.addEventListener('click', function () {
+    headerMenuLists.classList.add('header-menu-anime');
+    mask.style.display = "block";
+    mask.classList.add('mask-anime');
+  });
+
+  mask.addEventListener('click', function () {
+    headerMenuLists.classList.remove('header-menu-anime');
+    mask.style.display = "none";
+    mask.classList.remove('mask-anime');
+  });
+
+  const headerRankIndex = document.getElementById('header-rank-index');
+  const headerRankLists = document.getElementById('header-rank-lists');
+  headerRankIndex.addEventListener('click', function () {
+    headerRankLists.classList.toggle('rank-show');
+  });
+
+</script>
