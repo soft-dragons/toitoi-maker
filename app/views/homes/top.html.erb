@@ -21,8 +21,31 @@
     <div class="home-list-text">
       本日の復習
     </div>
-    <div class="home-list-text">
+    <div class="home-list-text home-hojo" id="list-dojo">
       問問道場
+      <div class="list-dojo-select" id="list-dojo-select">
+        <div class="dojo-select-list">
+          初級
+        </div>
+        <div class="dojo-select-list">
+          中級
+        </div>
+        <div class="dojo-select-list">
+          上級
+        </div>
+      </div>
     </div>
+    <script>
+      const listDojo = document.getElementById('list-dojo');
+      const listDojoSelect = document.getElementById('list-dojo-select');
+      document.addEventListener('click', (e) => {
+        if(!e.target.closest('.home-hojo')) {
+          listDojoSelect.classList.remove('list-dojo-select-show');
+        } else {
+          listDojoSelect.classList.add('list-dojo-select-show');
+        }
+      });
+
+    </script>
   </section>
 <% end %>

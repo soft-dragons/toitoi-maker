@@ -64,3 +64,27 @@ h1 {
   background: #232f34;
   color: white;
 }
+
+.home-hojo {
+  position: relative;
+}
+
+.list-dojo-select {
+  display: none;
+  width: 120px;
+  background: white;
+  border: 1px solid black;
+  color: black;
+  position: absolute;
+  top: -55px;
+  left: 110px;
+}
+
+.list-dojo-select-show {
+  display: block;
+}
+
+.dojo-select-list:hover {
+  background: #232f34;
+  color: white;
+}
