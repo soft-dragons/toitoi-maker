@@ -1,4 +1,32 @@
-ここにコンテンツ入れていく
+
 
 <% if user_signed_in? %>
+  ログインしてるよ
+<% else %>
+  <section class="home-devise-title">
+    <h1>
+      問問メーカー
+    </h1>
+    <h5>
+      Toi Toi Maker
+    <h5>
+  </section>
+  <div class="devise-buttons">
+    <%= link_to new_user_session_path, class: "devise-link-button", style: "text-decoration: none;", local: true do %>
+      <h3 class="devise-button-title">
+        ログイン
+      </h3>
+      <div class="devise-button-text">
+        アカウントをお持ちの方はコチラ！
+      </div>
+    <% end %>
+    <%= link_to new_user_registration_path, class: "devise-link-button", style: "text-decoration: none;", local: true do %>
+      <h3 class="devise-button-title">
+        サインアップ
+      </h3>
+      <div class="devise-button-text">
+        初めての方はコチラ！
+      </div>
+    <% end %>
+  </div>
 <% end %>
