@@ -20,7 +20,7 @@ class ProblemsController < ApplicationController
     problems = Problem.all
 
     problems.each do |s|
-      a = s.where(s.answer.result: true).count
+      a = problems.where(problems.answer.result: true).count
       b = s.answer.count
       #回答率 = sの回答がtrueのみの数 / sの全回答数 * 100
       rate = a / b * 100
