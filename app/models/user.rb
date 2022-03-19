@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :answers, dependent: :destroy
   has_many :feedbacks, dependent: :destroy
 
-  validates :name, presence: true, length: {maximum: 60}
+  validates :name, presence: true, length: { maximum: 60 }
   validates :point, numericality: {only_integer: true} #integerのみ許可
 
 end
