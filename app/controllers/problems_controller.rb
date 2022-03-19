@@ -26,9 +26,16 @@ class ProblemsController < ApplicationController
 
   def toitoi #問問の問題（初級/中級/上級）
     @high_level, @medium_level, @low_level = Problem.new.divide_problems
-    @high_problems = @high_level.sample(10)
-    @medium_problems = @medium_level.sample(10)
-    @low_problems = @low_level.sample(10)
+    if params[:level] == "low"
+       problem = @low_level.sample(1)
+    elsif params[:level] == "middle"
+          problem = @medium_level.sample(1)
+    elsif params[:level] == "high"
+          problem = @high_level.sample(1)
+    end
+    @problem = problem[0]
+    answers = [[@problem.answer, 1], [@problem.incorrect1, 2], [@problem.incorrect2, 3]]
+    @answers = answers.shuffle
   end
 
   def show #問題の詳細画面
@@ -59,7 +66,6 @@ class ProblemsController < ApplicationController
   end
 
   def test #復習の問題詳細
-    # 自分が今まで一度も解けていないかつ今日が復習日になっている問題を１問ずつ取ってくる（.first）
     no_correct_answers = []
     answer_list = current_user.answers
     answer_list.each do |answer|
