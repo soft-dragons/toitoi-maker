@@ -68,6 +68,9 @@ class ProblemsController < ApplicationController
     end
 
     check_date = 3
+    # answerの条件
+    # 最新のanswer かつ 最終更新日が3日前 かつ 同じproblem_idのanswerが全てfalseであるもの
+    # に、紐づいているproblemがほじぃぃぃぃぃぃx
     if no_correct_answers == []
        @problem = Problem.find_by(user_id: current_user.id, updated_at: Date.today - check_date)
     else
