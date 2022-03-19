@@ -5,7 +5,7 @@ class FeedbacksController < ApplicationController
   def create
     feedback = Feedback.find(params[:id])
     if feedback.save
-      redirect_to problem_path(feedback.id)
+      redirect_to problem_path(feedback.problem_id)
     else
       render 'problems/show'
     end
@@ -13,7 +13,7 @@ class FeedbacksController < ApplicationController
 
   def update
     if @feedback.update(feedback_params)
-      redirect_to problem_path(@feedback.id)
+      redirect_to problem_path(@feedback.problem_id)
     else
       render 'problems/show'
     end
@@ -21,7 +21,7 @@ class FeedbacksController < ApplicationController
 
   def destroy
     @feedback.destroy
-    redirect_to problem_path(@feedback.id)
+    redirect_to problem_path(@feedback.problem_id)
   end
 
 
