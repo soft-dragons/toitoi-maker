@@ -18,13 +18,12 @@ class ProblemsController < ApplicationController
 
   def toitoi #問問の問題一覧（初級/中級/上級）
     problems = Problem.all
-
     problems.each do |s|
-      a = problems.where(problems.answer.result: true).count
-      b = s.answer.count
+      a = problems.joins(:answers).where(answers: {result: true}).size
+      #a = problems.where(problem.answer.result: true).size
+      b = s.answer.size
       #回答率 = sの回答がtrueのみの数 / sの全回答数 * 100
       rate = a / b * 100
-
       if rate >= 70
         @golds = s
       elsif rate >= 40
