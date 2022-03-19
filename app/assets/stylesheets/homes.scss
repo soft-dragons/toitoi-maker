@@ -1,3 +1,39 @@
 // Place all the styles related to the homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+//ログイン前
+.home-devise-title {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.devise-buttons {
+  display: flex;
+  width: 450px;
+  margin: 80px auto 0 auto;
+}
+
+.devise-link-button {
+  width: 205px;
+  height: 150px;
+  text-align: center;
+  background: #66a8e2;
+  border: double 5px #fff;
+  margin: 10px;
+  padding: 20px 10px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+}
+
+.devise-link-button:hover {
+  transition: 0.5s all;
+  background: white;
+  border: solid 5px #66a8e2;
+  color: #66a8e2;
+}
+
+.devise-button-title {
+  margin-bottom: 10px;
+}
