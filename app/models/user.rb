@@ -6,6 +6,6 @@ class User < ApplicationRecord
 
   has_many :problems, dependent: :destroy
   has_many :answers, dependent: :destroy
-  has_many :feedback, dependent: :destroy
+  has_many :feedbacks, dependent: :destroy
 
 end
