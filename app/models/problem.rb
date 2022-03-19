@@ -27,11 +27,11 @@ class Problem < ApplicationRecord
     total = problem.answers.size
     #正当率
     if correct != 0 && total != 0
-      rate = correct / total * 100
+      rate = (correct * 100 / total)
     else
       rate = 0
     end
-    return rate
+    rate
   end
 
   def divide_problems

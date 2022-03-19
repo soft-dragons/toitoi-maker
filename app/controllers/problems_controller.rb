@@ -1,6 +1,7 @@
 class ProblemsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_problem, only: [:show, :edit, :update, :destroy]
+  before_action :user_rank, only: [:new, :show, :edit, :toitoi, :myProblems, :test]
 
   def new #問題の新規登録
     @problem = Problem.new
@@ -54,7 +55,7 @@ class ProblemsController < ApplicationController
 
   def edit #問題の編集画面
     if current_user.id != @problem.user_id
-      redirect_to problem_path(@problem), flash: { danger: '投稿者が異なるため編集できません'}
+       redirect_to problem_path(@problem), flash: { danger: '投稿者が異なるため編集できません'}
     end
   end
 
@@ -73,31 +74,46 @@ class ProblemsController < ApplicationController
   end
 
   def test #復習の問題詳細
-    no_correct_answers = []
-    answer_list = current_user.answers
-    answer_list.each do |answer|
-      if answer.nil?
-        rate = Problem.new.calc_rate(Problem.find(answer.problem_id))
-          if rete == 0
-            no_correct_answers.push(answer)
-          end
-      end
+    # no_correct_answers = []
+    # answer_list = current_user.answers
+    # answer_list.each do |answer|
+    #   if answer.nil?
+    #     rate = Problem.new.calc_rate(Problem.find(answer.problem_id))
+    #       if rete == 0
+    #         no_correct_answers.push(answer)
+    #       end
+    #   end
+    # end
+    # check_date = 3
+    Problem.where(user_id: current_user.id).each do |problem|
+      #if problem.answers.where(result: false).any?
+         answer = problem.answers.where(user_id: current_user.id).order(id: "DESC").first
+         if answer.present?
+            if answer.updated_at <= Date.today && answer.result == "false"
+               @answer = answer
+               break
+            end
+         else
+            if problem.updated_at <= Date.today || problem.answers.where(user_id: current_user.id).nil?
+               @answer = "first"
+               @problem = problem
+               break
+            end
+         end
+      #end
     end
-    check_date = 3
     # answerの条件
     # 最新のanswer かつ 最終更新日が3日前 かつ 同じproblem_idのanswerが全てfalseであるもの
     # に、紐づいているproblemがほじぃぃぃぃぃぃx
-    if no_correct_answers == []
-       @problem = Problem.find_by(user_id: current_user.id, updated_at: Date.today - check_date)
-    else
-      @problem = Problem.find_by(id: no_correct_answers[0].problem_id, updated_at: Date.today - check_date)
-    end
-    # problemの回答３つをランダムで取得
-    if @problem.nil?
-       @problem = "false"
-    else
+    if @answer == "first"
        answers = [[@problem.answer, 1], [@problem.incorrect1, 2], [@problem.incorrect2, 3]]
        @answers = answers.shuffle
+    elsif @answer.present? && @answer != "first"
+          @problem = @answer.problem
+          answers = [[@problem.answer, 1], [@problem.incorrect1, 2], [@problem.incorrect2, 3]]
+          @answers = answers.shuffle
+    elsif @answer.nil?
+          @problem = "false"
     end
   end
 
@@ -105,6 +121,19 @@ class ProblemsController < ApplicationController
 
   def set_problem
     @problem = Problem.find(params[:id])
+  end
+
+  def user_rank
+    if user_signed_in?
+       @users_array = User.pluck(:name, :point).sort_by(&:last).reverse
+       num = 0
+       @users_array.each do |user|
+         if current_user.name == user[0]
+            @rank = num + 1
+         end
+         num = num + 1
+       end
+   end
   end
 
   def problem_params

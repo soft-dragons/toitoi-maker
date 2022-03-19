@@ -180,7 +180,6 @@ table td {
   border: 1px solid black;
   padding: 5px;
   text-align: left;
-  cursor: pointer;
 }
 
 .problem-show-bottom {
@@ -216,6 +215,7 @@ table td {
 }
 
 .answer-select {
+  cursor: pointer;
 }
 
 .problem-edit-button:hover {

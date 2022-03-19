@@ -194,3 +194,10 @@ a {
   color: #232f34;
   border: 1px solid #232f34;
 }
+
+.header-rank-lists {
+  color: black;
+  text-align: left;
+  padding: 10px 0 0 50px;
+  overflow: scroll;
+}

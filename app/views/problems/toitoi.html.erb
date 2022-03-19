@@ -83,8 +83,10 @@
   </div>
 </section>
 
-<%= link_to user_registration_path(point: @point), id: "point-add", style: "display: none;", method: :patch, remote: true do %><% end %>
 <% if @problem != "false" %>
+  <%= link_to user_registration_path(point: @point), id: "point-add", style: "display: none;", method: :patch, remote: true do %><% end %>
+  <%= link_to problem_answers_path(problem_id: @problem.id, user_id: current_user.id, result: true), id: "toitoi-correct", style: "display: none;", method: :post, remote: true do %><% end %>
+  <%= link_to problem_answers_path(problem_id: @problem.id, user_id: current_user.id, result: false), id: "toitoi-incorrect", style: "display: none;", method: :post, remote: true do %><% end %>
   <script>
     var toitoiMask = document.getElementById('toitoi-mask');
     var toitoiSelect1 = document.getElementById('toitoi-select1');
@@ -97,16 +99,19 @@
       toitoiMask.style.display = "block";
       toitoiMask.classList.add('mask-anime');
       document.getElementById('point-add').click();
+      document.getElementById('toitoi-correct').click();
     });
     toitoiSelect2.addEventListener('click', function () {
       toitoiIncorrect.style.display = "block";
       toitoiMask.style.display = "block";
       toitoiMask.classList.add('mask-anime');
+      document.getElementById('toitoi-incorrect').click();
     });
     toitoiSelect3.addEventListener('click', function () {
       toitoiIncorrect.style.display = "block";
       toitoiMask.style.display = "block";
       toitoiMask.classList.add('mask-anime');
+      document.getElementById('toitoi-incorrect').click();
     });
   </script>
 <% end %>
