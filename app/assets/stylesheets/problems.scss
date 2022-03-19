@@ -179,6 +179,8 @@ table td {
 .show-answer-text {
   border: 1px solid black;
   padding: 5px;
+  text-align: left;
+  cursor: pointer;
 }
 
 .problem-show-bottom {
@@ -213,6 +215,9 @@ table td {
   margin-left: 10px;
 }
 
+.answer-select {
+}
+
 .problem-edit-button:hover {
   transition: 0.8s all;
   color: rgb(5, 184, 5);
@@ -241,4 +246,43 @@ table td {
   position: absolute;
   right: 10px;
   bottom: 10px;
+}
+
+//テスト出題
+.test-body {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 10px;
+  width: 300px;
+  height: 200px;
+  text-align: center;
+  border-radius: 20px;
+  border: 5px solid white;
+  color: white;
+  display: none;
+}
+
+.test-body-crrect {
+  background: #66a8e2;
+}
+
+.test-body-incrrect {
+  background: #232f34;
+}
+
+.test-buttons {
+  display: flex;
+  width: 260px;
+  margin: 50px auto 0 auto;
+}
+
+.test-button {
+  width: 130px;
+  height: 30px;
+  border: 1px solid white;
+  border-radius: 5px;
 }
