@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2022_03_19_020433) do
     t.boolean "result", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["problem_id"], name: "index_answers_on_problem_id", unique: true
+    t.index ["user_id"], name: "index_answers_on_user_id", unique: true
   end
 
   create_table "feedbacks", force: :cascade do |t|
@@ -26,6 +28,8 @@ ActiveRecord::Schema.define(version: 2022_03_19_020433) do
     t.text "text", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["problem_id"], name: "index_feedbacks_on_problem_id", unique: true
+    t.index ["user_id"], name: "index_feedbacks_on_user_id", unique: true
   end
 
   create_table "problems", force: :cascade do |t|
@@ -37,6 +41,7 @@ ActiveRecord::Schema.define(version: 2022_03_19_020433) do
     t.string "incorrect2", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_problems_on_user_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -50,6 +55,7 @@ ActiveRecord::Schema.define(version: 2022_03_19_020433) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["point"], name: "index_users_on_point"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
