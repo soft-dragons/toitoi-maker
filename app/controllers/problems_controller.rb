@@ -28,14 +28,21 @@ class ProblemsController < ApplicationController
     @high_level, @medium_level, @low_level = Problem.new.divide_problems
     if params[:level] == "low"
        problem = @low_level.sample(1)
+       @point = 1
     elsif params[:level] == "middle"
           problem = @medium_level.sample(1)
+          @point = 3
     elsif params[:level] == "high"
           problem = @high_level.sample(1)
+          @point = 5
     end
-    @problem = problem[0]
-    answers = [[@problem.answer, 1], [@problem.incorrect1, 2], [@problem.incorrect2, 3]]
-    @answers = answers.shuffle
+    if problem == []
+       @problem = "false"
+    else
+       @problem = problem[0]
+       answers = [[@problem.answer, 1], [@problem.incorrect1, 2], [@problem.incorrect2, 3]]
+       @answers = answers.shuffle
+    end
   end
 
   def show #問題の詳細画面
@@ -76,7 +83,6 @@ class ProblemsController < ApplicationController
           end
       end
     end
-
     check_date = 3
     # answerの条件
     # 最新のanswer かつ 最終更新日が3日前 かつ 同じproblem_idのanswerが全てfalseであるもの
