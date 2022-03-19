@@ -32,7 +32,6 @@ main {
   width: 800px;
   margin: 0 auto;
   min-height: calc(100vh - 80px);
-  border: 1px solid black;
 }
 
 a {
@@ -112,10 +111,29 @@ a {
   font-size: 1.5rem;
   padding: 10px 20px;
   color: white;
+  cursor: pointer;
 }
 
 .menu-list-text:hover {
   transition: 1s all;
+  background: white;
+  color: #232f34;
+}
+
+.menu-toitoi-lists {
+  margin: 0;
+  font-size: 1rem;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: none;
+}
+
+.menu-toitoi-item {
+  color: white;
+}
+
+.menu-toitoi-item:hover {
+  transition: 0.2s all;
   background: white;
   color: #232f34;
 }

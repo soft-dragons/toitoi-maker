@@ -20,9 +20,21 @@
     <%= link_to test_path, data: {"turbolinks" => false}, class: "menu-list-text", style: "text-decoration: none;", local: true do %>
       本日の復習
     <% end %>
-    <%= link_to toitoi_path, data: {"turbolinks" => false}, class: "menu-list-text", style: "text-decoration: none;", local: true do %>
+    <div class="menu-list-text" id="toitoi-menu" style="margin: 20px 0 0 0 ;">
       問問道場
-    <% end %>
+    </div>
+    <div class="menu-toitoi-lists" id="menu-toitoi-lists">
+      <%= link_to toitoi_path(level: "low"), data: {"turbolinks" => false}, class: "menu-toitoi-item", style: "text-decoration: none;", local: true do %>
+        初級
+      <% end %>
+      <%= link_to toitoi_path(level: "middle"), data: {"turbolinks" => false}, class: "menu-toitoi-item", style: "text-decoration: none;", local: true do %>
+        中級
+      <% end %>
+      <%= link_to toitoi_path(level: "high"), data: {"turbolinks" => false}, class: "menu-toitoi-item", style: "text-decoration: none;", local: true do %>
+        上級
+      <% end %>
+    </div>
+    <%# end %>
   </div>
   <%= link_to edit_user_registration_path, data: {"turbolinks" => false}, class: "header-point-posi", style: "text-decoration: none; color: white;", local: true do %>
     <div class="header-user">
@@ -50,6 +62,12 @@
   </div>
 
   <script>
+    const toitoiMenu = document.getElementById('toitoi-menu');
+    const menuToitoiLists = document.getElementById('menu-toitoi-lists');
+    toitoiMenu.addEventListener('click', function () {
+      menuToitoiLists.style.display = "block";
+    });
+
     const mask = document.getElementById('mask');
     const headerMenu = document.getElementById('header-menu');
     const headerMenuLists = document.getElementById('header-menu-lists');
@@ -63,6 +81,7 @@
       headerMenuLists.classList.remove('header-menu-anime');
       mask.style.display = "none";
       mask.classList.remove('mask-anime');
+      menuToitoiLists.style.display = "none";
     });
 
     const headerRankIndex = document.getElementById('header-rank-index');
@@ -74,6 +93,5 @@
         headerRankLists.classList.add('rank-show');
       }
     });
-
   </script>
 <% end %>

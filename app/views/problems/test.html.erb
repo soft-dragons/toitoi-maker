@@ -27,7 +27,7 @@
       </div>
       <div class="show-answer">
         <div class="show-answer-title">
-          b
+          B
         </div>
         <div class="show-answer-text answer-select" id="answer-select<%= @answers[1][1] %>">
           <%= @answers[1][0] %>
@@ -35,7 +35,7 @@
       </div>
       <div class="show-answer-last">
         <div class="show-answer-title">
-          c
+          C
         </div>
         <div class="show-answer-text answer-select" id="answer-select<%= @answers[2][1] %>">
           <%=@answers[2][0] %>
@@ -51,14 +51,14 @@
     正解！！！
   </h2>
   <div class="">
-    10pt獲得しました！！
+    3pt獲得しました！！
   </div>
   <div class="test-buttons">
-    <%= link_to root_path, data: {"turbolinks" => false}, class: "test-button", style: "text-decoration: none; color:white;", local: true do %>
-      ホーム画面へ
+    <%= link_to problem_path(@problem), data: {"turbolinks" => false}, class: "test-button", style: "text-decoration: none; color:white", local: true do %>
+      問題詳細
     <% end %>
-    <%= link_to problem_path(@problem), data: {"turbolinks" => false}, class: "test-button", style: "text-decoration: none; color:white;", local: true do %>
-      問題詳細へ
+    <%= link_to test_path, data: {"turbolinks" => false}, class: "test-button", style: "text-decoration: none; color:white;", local: true do %>
+      次へ
     <% end %>
   </div>
 </section>
@@ -68,14 +68,16 @@
     残念！！！
   </h2>
   <div class="test-buttons">
-    <%= link_to root_path, data: {"turbolinks" => false}, class: "test-button", style: "text-decoration: none; color:white;", local: true do %>
-      ホーム画面へ
-    <% end %>
     <%= link_to problem_path(@problem), data: {"turbolinks" => false}, class: "test-button", style: "text-decoration: none; color:white", local: true do %>
       問題詳細
     <% end %>
+    <%= link_to root_path, data: {"turbolinks" => false}, class: "test-button", style: "text-decoration: none; color:white;", local: true do %>
+      ホーム画面へ
+    <% end %>
   </div>
 </section>
+
+<%= link_to user_registration_path(point: 3), id: "test-point-add", style: "display: none;", method: :patch, remote: true do %><% end %>
 <% if @problem != "false" %>
   <script>
     var testMask = document.getElementById('test-mask');
@@ -88,7 +90,7 @@
       correct.style.display = "block";
       testMask.style.display = "block";
       testMask.classList.add('mask-anime');
-      
+      document.getElementById('test-point-add').click();
     });
     answerSelect2.addEventListener('click', function () {
       incorrect.style.display = "block";

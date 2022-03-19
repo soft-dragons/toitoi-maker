@@ -20,9 +20,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    if params[:point].present?
+       @user = current_user
+       @point = @user.point
+       @user.update(point: @point + params[:point].to_i)
+    end
+  end
 
   # DELETE /resource
   # def destroy
