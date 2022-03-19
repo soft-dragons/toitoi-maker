@@ -16,6 +16,14 @@ class ProblemsController < ApplicationController
     end
   end
 
+  def update
+    if @problem.update(problem_params)
+      redirect_to problem_path(@problem), flash: { success: '問題を更新しました！'}
+    else
+      render :edit
+    end
+  end
+
   def toitoi #問問の問題（初級/中級/上級）
     @high_level, @medium_level, @low_level = Problem.new.divide_problems
     @high_problems = @high_level.sample(10)
@@ -34,14 +42,6 @@ class ProblemsController < ApplicationController
     end
   end
 
-  def update
-    if @problem.update(problem_params)
-      redirect_to problem_path(@problem), flash: { success: '問題を更新しました！'}
-    else
-      render :edit
-    end
-  end
-
   def myProblems #自分の問題一覧
     @problems = current_user.problems.order(created_at: 'desc')
   end
@@ -53,7 +53,7 @@ class ProblemsController < ApplicationController
 
   def test_index #復習の問題一覧
     answers = current_user.answers.where(result: false)
-    @problems = Problem.where(answer_id: answers.ids)
+    @problems = Problem.where(user_id: current_user.id, answer_id: answers.ids)
   end
 
   def test #復習の問題詳細
@@ -68,11 +68,18 @@ class ProblemsController < ApplicationController
     end
 
     check_date = 3
-    @problem = Problems.find_by(id: no_correct_answers[0].product_id, updated_at: Date.today - check_date)
-
+    if no_correct_answers == []
+       @problem = Problem.find_by(user_id: current_user.id, updated_at: Date.today - check_date)
+    else
+      @problem = Problem.find_by(id: no_correct_answers[0].problem_id, updated_at: Date.today - check_date)
+    end
     # problemの回答３つをランダムで取得
-    answers = [[@problem.answer, "answer"], [@problem.incorrect1, "incorrect1"], [@problem.incorrect2, "incorrect2"]]
-    @answers = answers.shuffle
+    if @problem.nil?
+       @problem = "false"
+    else
+       answers = [[@problem.answer, 1], [@problem.incorrect1, 2], [@problem.incorrect2, 3]]
+       @answers = answers.shuffle
+    end
   end
 
   private

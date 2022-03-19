@@ -19,20 +19,20 @@
     <%= link_to test_path, data: {"turbolinks" => false}, class: "home-list-text", style: "text-decoration: none;", local: true do %>
       本日の復習
     <% end %>
-    <%= link_to toitoi_path, data: {"turbolinks" => false}, class: "home-list-text home-hojo", style: "text-decoration: none;", local: true do %>
+    <div class="home-list-text home-hojo">
       問問道場
       <div class="list-dojo-select" id="list-dojo-select">
-        <div class="dojo-select-list">
+        <%= link_to toitoi_path(level: "low"), data: {"turbolinks" => false}, class: "dojo-select-list", style: "text-decoration: none; color: black;", local: true do %>
           初級
-        </div>
-        <div class="dojo-select-list">
+        <% end %>
+        <%= link_to toitoi_path(level: "middle"), data: {"turbolinks" => false}, class: "dojo-select-list", style: "text-decoration: none; color: black;", local: true do %>
           中級
-        </div>
-        <div class="dojo-select-list">
+        <% end %>
+        <%= link_to toitoi_path(level: "high"), data: {"turbolinks" => false}, class: "dojo-select-list", style: "text-decoration: none; color: black;", local: true do %>
           上級
-        </div>
+        <% end %>
       </div>
-    <% end %>
+    </div>
     <script>
       const listDojo = document.getElementById('list-dojo');
       const listDojoSelect = document.getElementById('list-dojo-select');
@@ -43,7 +43,6 @@
           listDojoSelect.classList.add('list-dojo-select-show');
         }
       });
-
     </script>
   </section>
 <% else %>
