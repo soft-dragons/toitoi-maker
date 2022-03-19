@@ -14,3 +14,74 @@
  *= require_self
  */
 
+ * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  display: flex;
+  height: 80px;
+  background: #232f34;
+  color: white;
+  font-size: 1rem;
+}
+
+main {
+  width: 800px;
+  margin: 0 auto;
+  min-height: calc(100vh - 80px);
+  border: 1px solid black;
+}
+
+.header-menu {
+  width: 80px;
+  text-align: center;
+  padding-top: 10px;
+  cursor: pointer;
+}
+
+.header-menu:before {
+  content: url(assets/メニュー.png);
+  width: 25px;
+  height: 25px;
+}
+
+.header-point-posi {
+  margin: 25px 0 0 25px;
+  width: 150px;
+  cursor: pointer;
+}
+
+.header-rank-posi {
+  margin: 0 133px 0 auto;
+  text-align: center;
+}
+
+.header-rank {
+  font-size: 2rem;
+}
+
+.header-devise {
+  margin: 0 0 0 auto;
+}
+
+.header-rank-index {
+  cursor: pointer;
+}
+
+.header-devise-button {
+  margin: 25px 10px 0 auto;
+  width: 100px;
+  text-align: center;
+  border: 1px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.header-devise-button:hover {
+  transition: 1s all;
+  background: white;
+  color: #232f34;
+}
