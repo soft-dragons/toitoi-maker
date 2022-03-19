@@ -19,27 +19,27 @@ Faker::Config.locale = :ja
 end
 
 50.times do |n|
-  User.where('id = ?', rand(User.first.id..User.last.id)).each do |user|
+  User.where('id = ?', rand(User.first.id .. User.last.id)).each do |user|
     problem = user.problems.create!(
-      title: "といとい問題"+(n+1).to_a,
+      title: "といとい問題"+(n+1).to_s,
       statement: "問題の内容が記載されます。問題の内容が記載されます。\n問題の内容が記載されます。問題の内容が記載されます。\n",
-      answer: Faker::Computer.stack,
-      incorrect1: Faker::Computer.type
-      incorrect2: Faker::Hacker.say_something_smart
+      answer: Faker::Hacker.adjective,
+      incorrect1: Faker::Computer.type,
+      incorrect2: Faker::Hacker.ingverb
     )
   end
 end
 
 70.times do |n|
-  User.where('id = ?', rand(User.first.id..User.last.id)).each do |user|
-    problem = rand(Promlem.first.id..Promlem.last.id)
+  User.where('id = ?', rand(User.first.id .. User.last.id)).each do |user|
+    problem = Problem.order("RANDOM()").limit(1)
     answer = user.answers.create!(
-      problem_id: problem.id
+      problem_id: problem[0].id,
       result: Faker::Boolean.boolean
     )
     feedback = user.feedbacks.create!(
-      problem_id: problem.user_id
+      problem_id: problem[0].user_id,
       text: "コメントです！コメントです！\nコメントです！コメントです！\n"
-    ) unless problem.user_id == user.id
+    ) unless problem[0].user_id == user.id
   end
 end
