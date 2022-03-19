@@ -1,1 +1,109 @@
-toitoiなんやで
+
+<div class="mask" id="toitoi-mask" style="cursor:auto;"></div>
+<section class="problem-show">
+  <% if params[:level] == "low" %>
+    <h2 class="problem-title">問問　初級編！！</h2>
+  <% elsif params[:level] == "middle" %>
+    <h2 class="problem-title">問問　中級編！！</h2>
+  <% elsif params[:level] == "high" %>
+    <h2 class="problem-title">問問　上級編！！</h2>
+  <% end %>
+  <% if @problem == "false" %>
+    <div>
+      本日の復習問題はありません。
+    </div>
+    <%= link_to root_path, data: {"turbolinks" => false}, class: "", style: "", local: true do %>
+      ホームへ戻る
+    <% end %>
+  <% else %>
+    <div class="problem-show-title">
+      <%= @problem.title %>
+    </div>
+    <div class="problem-show-text">
+      <%= simple_format(@problem.statement) %>
+    </div>
+    <div class="problem-show-answers">
+      <div class="show-answer">
+        <div class="show-answer-title">
+          A
+        </div>
+        <div class="show-answer-text answer-select" id="toitoi-select<%= @answers[0][1] %>">
+          <%= @answers[0][0] %>
+        </div>
+      </div>
+      <div class="show-answer">
+        <div class="show-answer-title">
+          b
+        </div>
+        <div class="show-answer-text answer-select" id="toitoi-select<%= @answers[1][1] %>">
+          <%= @answers[1][0] %>
+        </div>
+      </div>
+      <div class="show-answer-last">
+        <div class="show-answer-title">
+          c
+        </div>
+        <div class="show-answer-text answer-select" id="toitoi-select<%= @answers[2][1] %>">
+          <%=@answers[2][0] %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+</section>
+
+<section class="test-body test-body-crrect" id="toitoi-body-crrect">
+  <h2 class="test-text">
+    正解！！！
+  </h2>
+  <div class="">
+    10pt獲得しました！！
+  </div>
+  <div class="test-buttons">
+    <%= link_to root_path, data: {"turbolinks" => false}, class: "test-button", style: "text-decoration: none; color:white;", local: true do %>
+      ホーム画面へ
+    <% end %>
+    <%= link_to problem_path(@problem), data: {"turbolinks" => false}, class: "test-button", style: "text-decoration: none; color:white;", local: true do %>
+      問題詳細へ
+    <% end %>
+  </div>
+</section>
+
+<section class="test-body test-body-incrrect" id="toitoi-body-incrrect">
+  <h2 class="test-text">
+    残念！！！
+  </h2>
+  <div class="test-buttons">
+    <%= link_to root_path, data: {"turbolinks" => false}, class: "test-button", style: "text-decoration: none; color:white;", local: true do %>
+      ホーム画面へ
+    <% end %>
+    <%= link_to problem_path(@problem), data: {"turbolinks" => false}, class: "test-button", style: "text-decoration: none; color:white", local: true do %>
+      問題詳細
+    <% end %>
+  </div>
+</section>
+<% if @problem != "false" %>
+  <script>
+    var toitoiMask = document.getElementById('toitoi-mask');
+    var toitoiSelect1 = document.getElementById('toitoi-select1');
+    var toitoiSelect2 = document.getElementById('toitoi-select2');
+    var toitoiSelect3 = document.getElementById('toitoi-select3');
+    var toitoiCorrect = document.getElementById('toitoi-body-crrect');
+    var toitoiIncorrect = document.getElementById('toitoi-body-incrrect');
+    toitoiSelect1.addEventListener('click', function () {
+      toitoiCorrect.style.display = "block";
+      toitoiMask.style.display = "block";
+      toitoiMask.classList.add('mask-anime')
+    });
+    toitoiSelect2.addEventListener('click', function () {
+      toitoiIncorrect.style.display = "block";
+      toitoiMask.style.display = "block";
+      toitoiMask.classList.add('mask-anime')
+    });
+    toitoiSelect3.addEventListener('click', function () {
+      toitoiIncorrect.style.display = "block";
+      toitoiMask.style.display = "block";
+      toitoiMask.classList.add('mask-anime')
+    });
+  </script>
+<% end %>

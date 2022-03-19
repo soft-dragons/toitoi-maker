@@ -36,12 +36,12 @@ class Problem < ApplicationRecord
 
   def divide_problems
     problems = Problem.all
+    @high_level = []
+    @medium_level = []
+    @low_level = []
+
     problems.each do |problem|
       rate = calc_rate(problem)
-
-      @high_level = []
-      @medium_level = []
-      @low_level = []
 
       if rate >= 70
         @high_level.push(problem)
@@ -50,8 +50,8 @@ class Problem < ApplicationRecord
       else
         @low_level.push(problem)
       end
-
-      [@high_level, @medium_level, @low_level]
     end
+
+    [@high_level, @medium_level, @low_level]
   end
 end
