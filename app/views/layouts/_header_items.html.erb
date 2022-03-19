@@ -46,13 +46,15 @@
   <% end %>
   <div class="header-rank-posi">
     <div class="header-rank">
-      20位
+      <%= @rank %>位
     </div>
     <div class="header-rank-index" id="header-rank-index">
       ランキング一覧 ▼
     </div>
     <div class="header-rank-lists" id="header-rank-lists">
-      ここにランキング一覧
+      <% @users_array.each_with_index do |user, i| %>
+        <%= i + 1 %>位　<%= user[0] %>さん <%= user[1] %>pt<br>
+      <% end %>
     </div>
   </div>
   <div class="header-devise">

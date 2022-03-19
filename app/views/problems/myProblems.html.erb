@@ -36,7 +36,7 @@
           <%= problem.updated_at.strftime('%-m月%-d日') %>
         </td>
         <td>
-          90%
+          <%= Problem.new.calc_rate(problem) %>%
         </td>
       </tr>
       <%= link_to problem_path(problem), data: {"turbolinks" => false}, id: "problem_path_#{problem.id}", style: "display:none;", local: true do %><% end %>

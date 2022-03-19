@@ -77,8 +77,10 @@
   </div>
 </section>
 
-<%= link_to user_registration_path(point: 3), id: "test-point-add", style: "display: none;", method: :patch, remote: true do %><% end %>
 <% if @problem != "false" %>
+  <%= link_to user_registration_path(point: 3), id: "test-point-add", style: "display: none;", method: :patch, remote: true do %><% end %>
+  <%= link_to problem_answers_path(problem_id: @problem.id, user_id: current_user.id, result: true), id: "test-correct", style: "display: none;", method: :post, remote: true do %><% end %>
+  <%= link_to problem_answers_path(problem_id: @problem.id, user_id: current_user.id, result: false), id: "test-incorrect", style: "display: none;", method: :post, remote: true do %><% end %>
   <script>
     var testMask = document.getElementById('test-mask');
     var answerSelect1 = document.getElementById('answer-select1');
@@ -91,16 +93,19 @@
       testMask.style.display = "block";
       testMask.classList.add('mask-anime');
       document.getElementById('test-point-add').click();
+      document.getElementById('test-correct').click();
     });
     answerSelect2.addEventListener('click', function () {
       incorrect.style.display = "block";
       testMask.style.display = "block";
       testMask.classList.add('mask-anime');
+      document.getElementById('test-incorrect').click();
     });
     answerSelect3.addEventListener('click', function () {
       incorrect.style.display = "block";
       testMask.style.display = "block";
       testMask.classList.add('mask-anime');
+      document.getElementById('test-incorrect').click();
     });
   </script>
 <% end %>
