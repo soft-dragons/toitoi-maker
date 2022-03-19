@@ -11,8 +11,8 @@ Faker::Config.locale = :ja
 
 user = User.create!(
   name: Faker::Name.unique.name,
-  email: "test@123",
-  password: "test123",
+  email: "test@123456",
+  password: "test123456",
   point: 15
 )
 
@@ -23,8 +23,8 @@ problem = Problem.create!(
   answer: Faker::Hacker.adjective,
   incorrect1: Faker::Computer.type,
   incorrect2: Faker::Hacker.ingverb,
-  created_at: Date.today - 6,
-  updated_at: Date.today - 6
+  created_at: Date.today - 3,
+  updated_at: Date.today - 3
 )
 
 3.times do |n|
@@ -32,7 +32,7 @@ problem = Problem.create!(
     user_id: user.id,
     problem_id: problem.id,
     result: false,
-    created_at: Date.today - 6,
+    created_at: Date.today - 3,
     updated_at: Date.today - 3
     )
 end
