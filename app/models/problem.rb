@@ -23,10 +23,14 @@ class Problem < ApplicationRecord
   end
 
   def calc_rate(problem)
-    correct = problem.answers.whewe(result: true).size
+    correct = problem.answers.where(result: true).size
     total = problem.answers.size
     #正当率
-    rate = correct / total * 100
+    if correct != 0 && total != 0
+      rate = correct / total * 100
+    else
+      rate = 0
+    end
     return rate
   end
 
@@ -35,19 +39,19 @@ class Problem < ApplicationRecord
     problems.each do |problem|
       rate = calc_rate(problem)
 
-      high_level = []
-      medium_level = []
-      low_level = []
+      @high_level = []
+      @medium_level = []
+      @low_level = []
 
       if rate >= 70
-        high_level.push(problem)
+        @high_level.push(problem)
       elsif rate >= 40
-        medium_level.push(problem)
+        @medium_level.push(problem)
       else
-        low_level.push(problem)
+        @low_level.push(problem)
       end
 
-      return high_level, medium_level, low_level
+      [@high_level, @medium_level, @low_level]
     end
   end
 end
