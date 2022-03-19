@@ -1,9 +1,9 @@
 
 
 <% if user_signed_in? %>
-  ログインしてるよ
+  <%= render partial: 'top_unlogin' %>
 <% else %>
-  <section class="home-devise-title">
+  <section class="home-title">
     <h1>
       問問メーカー
     </h1>
@@ -11,22 +11,18 @@
       Toi Toi Maker
     <h5>
   </section>
-  <div class="devise-buttons">
-    <%= link_to new_user_session_path, class: "devise-link-button", style: "text-decoration: none;", local: true do %>
-      <h3 class="devise-button-title">
-        ログイン
-      </h3>
-      <div class="devise-button-text">
-        アカウントをお持ちの方はコチラ！
-      </div>
-    <% end %>
-    <%= link_to new_user_registration_path, class: "devise-link-button", style: "text-decoration: none;", local: true do %>
-      <h3 class="devise-button-title">
-        サインアップ
-      </h3>
-      <div class="devise-button-text">
-        初めての方はコチラ！
-      </div>
-    <% end %>
-  </div>
+  <section class="home-lists">
+    <div class="home-list-text">
+      問題を作る
+    </div>
+    <div class="home-list-text">
+      自分の投稿一覧
+    </div>
+    <div class="home-list-text">
+      本日の復習
+    </div>
+    <div class="home-list-text">
+      問問道場
+    </div>
+  </section>
 <% end %>
