@@ -33,7 +33,7 @@ class ProblemsController < ApplicationController
 
   def show #問題の詳細画面
     @feedbacks = @problem.feedbacks.order(created_at: 'desc')
-    @rate = calc_rate(@problem)
+    @rate = Problem.new.calc_rate(@problem)
   end
 
   def edit #問題の編集画面
@@ -61,8 +61,8 @@ class ProblemsController < ApplicationController
     no_correct_answers = []
     answer_list = current_user.answers
     answer_list.each do |answer|
-      rate = calc_rate(answer.problem_id)
-      if rete == 0
+      rate = Problem.new.calc_rate(Problem.find(answer.problem_id))
+      if rate == 0
         no_correct_answers.push(answer)
       end
     end
