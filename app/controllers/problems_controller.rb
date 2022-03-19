@@ -8,8 +8,8 @@ class ProblemsController < ApplicationController
 
   def create
     @problem = current_user.problems.new(problem_params)
-    if @problem.save
-      redirect_to myProblems_path, flash: { success: '問題を作成しました！'}
+    if @problem.answer_check && @problem.save
+      redirect_to problem_path(@problem), flash: { success: '問題を作成しました！'}
     else
       flash.now[:danger] = '問題を作成できませんでした'
       render :new
@@ -17,7 +17,22 @@ class ProblemsController < ApplicationController
   end
 
   def toitoi #問問の問題一覧（初級/中級/上級）
-    @problems = Problem.all.order(created_at: 'desc')
+    problems = Problem.all
+
+    problems.each do |s|
+      a = problems.where(problems.answer.result: true).count
+      b = s.answer.count
+      #回答率 = sの回答がtrueのみの数 / sの全回答数 * 100
+      rate = a / b * 100
+
+      if rate >= 70
+        @golds = s
+      elsif rate >= 40
+        @silvers = s
+      else
+        @bronzes = s
+      end
+    end
   end
 
   def show #問題の詳細画面
