@@ -11,30 +11,32 @@
 
   <body>
     <header>
-      <div class="header-menu">
-        MENU
-      </div>
-      <div class="header-point-posi">
-        <div class="header-user">
-          ○○○○さん
+      <% if user_signed_in? %>
+        <div class="header-menu">
+          MENU
         </div>
-        <div class="header-point">
-          ポイント：400pt
+        <div class="header-point-posi">
+          <div class="header-user">
+            ○○○○さん
+          </div>
+          <div class="header-point">
+            ポイント：400pt
+          </div>
         </div>
-      </div>
-      <div class="header-rank-posi">
-        <div class="header-rank">
-          20位
+        <div class="header-rank-posi">
+          <div class="header-rank">
+            20位
+          </div>
+          <div class="header-rank-index">
+            ランキング一覧 ▼
+          </div>
         </div>
-        <div class="header-rank-index">
-          ランキング一覧 ▼
+        <div class="header-devise">
+          <div class="header-devise-button">
+            ログイン
+          </div>
         </div>
-      </div>
-      <div class="header-devise">
-        <div class="header-devise-button">
-          ログイン
-        </div>
-      </div>
+      <% end %>
     </header>
     <main>
       <%= yield %>
