@@ -1,6 +1,6 @@
 class ProblemsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_problem, only: [:show, :edit, :update, :destroy, ]
+  before_action :set_problem, only: [:show, :edit, :update, :destroy]
 
   def new #問題の新規登録
     @problem = Problem.new
@@ -31,10 +31,16 @@ class ProblemsController < ApplicationController
   end
 
   def update
-    if @problem.update()
+    if @problem.update(problem_params)
+      redirect_to show_path(@problem), flash: { success: '問題を更新しました！'}
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @problem.destroy
+    redirect_to myProblems_path, flash: { success; '問題を削除しました。'}
   end
 
   def myProblems #自分の問題一覧
