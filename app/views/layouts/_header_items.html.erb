@@ -1,78 +1,79 @@
 
+<% if user_signed_in? %>
+  <div class="header-menu" id="header-menu">
+    MENU
+  </div>
+  <div class="header-menu-lists" id="header-menu-lists">
+    <div class="menu-list-title">
+      Menu
+    </div>
+    <hr>
+    <%= link_to root_path, data: {"turbolinks" => false}, class: "menu-list-text", style: "text-decoration: none;", local: true do %>
+      ホーム
+    <% end %>
+    <%= link_to new_problem_path, data: {"turbolinks" => false}, class: "menu-list-text", style: "text-decoration: none;", local: true do %>
+      問題を作る
+    <% end %>
+    <%= link_to myProblems_path, data: {"turbolinks" => false}, class: "menu-list-text", style: "text-decoration: none;", local: true do %>
+      自分の投稿一覧
+    <% end %>
+    <%= link_to test_path, data: {"turbolinks" => false}, class: "menu-list-text", style: "text-decoration: none;", local: true do %>
+      本日の復習
+    <% end %>
+    <%= link_to toitoi_path, data: {"turbolinks" => false}, class: "menu-list-text", style: "text-decoration: none;", local: true do %>
+      問問道場
+    <% end %>
+  </div>
+  <%= link_to edit_user_registration_path, data: {"turbolinks" => false}, class: "header-point-posi", style: "text-decoration: none; color: white;", local: true do %>
+    <div class="header-user">
+      <%= current_user.name %>さん
+    </div>
+    <div class="header-point">
+      ポイント：<%= current_user.point %>pt
+    </div>
+  <% end %>
+  <div class="header-rank-posi">
+    <div class="header-rank">
+      20位
+    </div>
+    <div class="header-rank-index" id="header-rank-index">
+      ランキング一覧 ▼
+    </div>
+    <div class="header-rank-lists" id="header-rank-lists">
+      ここにランキング一覧
+    </div>
+  </div>
+  <div class="header-devise">
+    <%= link_to destroy_user_session_path, method: :delete, class: "header-devise-button", style: "text-decoration: none;", data: { confirm: 'ログアウトしますか？' } do %>
+      ログアウト
+    <% end %>
+  </div>
 
-<div class="header-menu" id="header-menu">
-  MENU
-</div>
-<div class="header-menu-lists" id="header-menu-lists">
-  <div class="menu-list-title">
-    Menu
-  </div>
-  <hr>
-  <%= link_to root_path, data: {"turbolinks" => false}, class: "menu-list-text", style: "text-decoration: none;", local: true do %>
-    ホーム
-  <% end %>
-  <%= link_to new_problem_path, data: {"turbolinks" => false}, class: "menu-list-text", style: "text-decoration: none;", local: true do %>
-    問題を作る
-  <% end %>
-  <%= link_to myProblems_path, data: {"turbolinks" => false}, class: "menu-list-text", style: "text-decoration: none;", local: true do %>
-    自分の投稿一覧
-  <% end %>
-  <%= link_to test_path, data: {"turbolinks" => false}, class: "menu-list-text", style: "text-decoration: none;", local: true do %>
-    本日の復習
-  <% end %>
-  <%= link_to toitoi_path, data: {"turbolinks" => false}, class: "menu-list-text", style: "text-decoration: none;", local: true do %>
-    問問道場
-  <% end %>
-</div>
-<%= link_to edit_user_registration_path, data: {"turbolinks" => false}, class: "header-point-posi", style: "text-decoration: none; color: white;", local: true do %>
-  <div class="header-user">
-    ○○○○さん
-  </div>
-  <div class="header-point">
-    ポイント：400pt
-  </div>
+  <script>
+    const mask = document.getElementById('mask');
+    const headerMenu = document.getElementById('header-menu');
+    const headerMenuLists = document.getElementById('header-menu-lists');
+    headerMenu.addEventListener('click', function () {
+      headerMenuLists.classList.add('header-menu-anime');
+      mask.style.display = "block";
+      mask.classList.add('mask-anime');
+    });
+
+    mask.addEventListener('click', function () {
+      headerMenuLists.classList.remove('header-menu-anime');
+      mask.style.display = "none";
+      mask.classList.remove('mask-anime');
+    });
+
+    const headerRankIndex = document.getElementById('header-rank-index');
+    const headerRankLists = document.getElementById('header-rank-lists');
+    document.addEventListener('click', (e) => {
+      if(!e.target.closest('.header-rank-index')) {
+        headerRankLists.classList.remove('rank-show');
+      } else {
+        headerRankLists.classList.add('rank-show');
+      }
+    });
+
+  </script>
 <% end %>
-<div class="header-rank-posi">
-  <div class="header-rank">
-    20位
-  </div>
-  <div class="header-rank-index" id="header-rank-index">
-    ランキング一覧 ▼
-  </div>
-  <div class="header-rank-lists" id="header-rank-lists">
-    ここにランキング一覧
-  </div>
-</div>
-<div class="header-devise">
-  <div class="header-devise-button">
-    ログイン
-  </div>
-</div>
-
-<script>
-  const mask = document.getElementById('mask');
-  const headerMenu = document.getElementById('header-menu');
-  const headerMenuLists = document.getElementById('header-menu-lists');
-  headerMenu.addEventListener('click', function () {
-    headerMenuLists.classList.add('header-menu-anime');
-    mask.style.display = "block";
-    mask.classList.add('mask-anime');
-  });
-
-  mask.addEventListener('click', function () {
-    headerMenuLists.classList.remove('header-menu-anime');
-    mask.style.display = "none";
-    mask.classList.remove('mask-anime');
-  });
-
-  const headerRankIndex = document.getElementById('header-rank-index');
-  const headerRankLists = document.getElementById('header-rank-lists');
-  document.addEventListener('click', (e) => {
-    if(!e.target.closest('.header-rank-index')) {
-      headerRankLists.classList.remove('rank-show');
-    } else {
-      headerRankLists.classList.add('rank-show');
-    }
-  });
-
-</script>

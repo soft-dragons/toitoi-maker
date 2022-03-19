@@ -1,0 +1,53 @@
+<section class="problem-index">
+  <h2 class="problem-title">作成した問題一覧</h2>
+  
+  <table border="1">
+    <tr>
+      <th class="problem-create">
+        作成日
+      </th>
+      <th class="problem-statement">
+        問題文
+      </th>
+      <th class="problem-update">
+        復習<br>
+        予定日
+      </th>
+      <th class="problem-result">
+        正解率
+      </th>
+    </tr>
+    <% @problems.each do |problem| %>
+      <tr class="problem-table" id="problem-table<%= problem.id %>">
+        <td>
+          <%= problem.created_at.strftime('%-Y年') %><br>
+          <%= problem.created_at.strftime('%-m月%-d日') %>
+        </td>
+        <td class="problem-statement-align">
+          <div class="problem-statement-title">
+            <%= problem.title %>
+          </div>
+          <div class="problem-statement-text">
+            <%= problem.statement.truncate(200, omission: '…') %>
+          </div>
+        </div>
+        <td>
+          <%= problem.updated_at.strftime('%-Y年') %><br>
+          <%= problem.updated_at.strftime('%-m月%-d日') %>
+        </td>
+        <td>
+          90%
+        </td>
+      </tr>
+      <%= link_to problem_path(problem), data: {"turbolinks" => false}, id: "problem_path_#{problem.id}", style: "display:none;", local: true do %><% end %>
+      <script>
+        var problemTable<%= problem.id %> = document.getElementById('problem-table<%= problem.id %>');
+        var problemPath<%= problem.id %> = document.getElementById('problem_path_<%= problem.id %>');
+        problemTable<%= problem.id %>.addEventListener('click', function () {
+          problemPath<%= problem.id %>.click();
+        });
+      </script>
+    <% end %>
+  </table>
+
+</section>
