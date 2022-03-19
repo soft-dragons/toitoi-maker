@@ -36,6 +36,7 @@ class ProblemsController < ApplicationController
   end
 
   def show #問題の詳細画面
+    @problem = Problem.find(params[:id])
   end
 
   def edit #問題の編集画面
