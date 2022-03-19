@@ -1,8 +1,6 @@
 
 
 <% if user_signed_in? %>
-  <%= render partial: 'top_unlogin' %>
-<% else %>
   <section class="home-title">
     <h1>
       問問メーカー
@@ -12,16 +10,16 @@
     <h5>
   </section>
   <section class="home-lists">
-    <div class="home-list-text">
+    <%= link_to new_problem_path, data: {"turbolinks" => false}, class: "home-list-text", style: "text-decoration: none;", local: true do %>
       問題を作る
-    </div>
-    <div class="home-list-text">
+    <% end %>
+    <%= link_to myProblem_path, data: {"turbolinks" => false}, class: "home-list-text", style: "text-decoration: none;", local: true do %>
       自分の投稿一覧
-    </div>
-    <div class="home-list-text">
+    <% end %>
+    <%= link_to test_path, data: {"turbolinks" => false}, class: "home-list-text", style: "text-decoration: none;", local: true do %>
       本日の復習
-    </div>
-    <div class="home-list-text home-hojo" id="list-dojo">
+    <% end %>
+    <%= link_to toitoi_path, data: {"turbolinks" => false}, class: "home-list-text home-hojo", style: "text-decoration: none;", local: true do %>
       問問道場
       <div class="list-dojo-select" id="list-dojo-select">
         <div class="dojo-select-list">
@@ -34,7 +32,7 @@
           上級
         </div>
       </div>
-    </div>
+    <% end %>
     <script>
       const listDojo = document.getElementById('list-dojo');
       const listDojoSelect = document.getElementById('list-dojo-select');
@@ -48,4 +46,6 @@
 
     </script>
   </section>
+<% else %>
+  <%= render partial: 'top_unlogin' %>
 <% end %>

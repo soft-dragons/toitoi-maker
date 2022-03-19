@@ -8,9 +8,12 @@
     Menu
   </div>
   <hr>
-  <div class="menu-list-text">
+  <%= link_to root_path, data: {"turbolinks" => false}, class: "menu-list-text", style: "text-decoration: none;", local: true do %>
+    ホーム
+  <% end %>
+  <%= link_to new_problem_path, data: {"turbolinks" => false}, class: "menu-list-text", style: "text-decoration: none;", local: true do %>
     問題を作る
-  </div>
+  <% end %>
   <div class="menu-list-text">
     自分の投稿一覧
   </div>
@@ -64,8 +67,12 @@
 
   const headerRankIndex = document.getElementById('header-rank-index');
   const headerRankLists = document.getElementById('header-rank-lists');
-  headerRankIndex.addEventListener('click', function () {
-    headerRankLists.classList.toggle('rank-show');
+  document.addEventListener('click', (e) => {
+    if(!e.target.closest('.header-rank-index')) {
+      headerRankLists.classList.remove('rank-show');
+    } else {
+      headerRankLists.classList.add('rank-show');
+    }
   });
 
 </script>

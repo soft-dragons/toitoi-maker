@@ -23,10 +23,11 @@ class ProblemsController < ApplicationController
   end
 
   def edit #問題の編集画面
+    @problem = Problem.find(params[:id])
     if current_user.id != @problem.user_id
       redirect_to problem_path(@problem), flash: { danger: '投稿者が異なるため編集できません。'}
     else
-      @problem = Problem.where(problem_id : @problem.id)
+      #@problem = Problem.where(problem_id : @problem.id)
     end
   end
 
@@ -40,7 +41,8 @@ class ProblemsController < ApplicationController
 
   def destroy
     @problem.destroy
-    redirect_to myProblems_path, flash: { success; '問題を削除しました。'}
+    redirect_to myProblem_path
+    #, flash: { success; '問題を削除しました。'}
   end
 
   def myProblems #自分の問題一覧
