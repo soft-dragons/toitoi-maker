@@ -14,15 +14,15 @@
   <%= link_to new_problem_path, data: {"turbolinks" => false}, class: "menu-list-text", style: "text-decoration: none;", local: true do %>
     問題を作る
   <% end %>
-  <div class="menu-list-text">
+  <%= link_to myProblem_path, data: {"turbolinks" => false}, class: "menu-list-text", style: "text-decoration: none;", local: true do %>
     自分の投稿一覧
-  </div>
-  <div class="menu-list-text">
+  <% end %>
+  <%= link_to test_path, data: {"turbolinks" => false}, class: "menu-list-text", style: "text-decoration: none;", local: true do %>
     本日の復習
-  </div>
-  <div class="menu-list-text">
+  <% end %>
+  <%= link_to toitoi_path, data: {"turbolinks" => false}, class: "menu-list-text", style: "text-decoration: none;", local: true do %>
     問問道場
-  </div>
+  <% end %>
 </div>
 <div class="header-point-posi">
   <div class="header-user">
