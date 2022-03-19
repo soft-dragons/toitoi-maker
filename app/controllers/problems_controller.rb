@@ -9,7 +9,7 @@ class ProblemsController < ApplicationController
   def create
     @problem = current_user.problems.new(problem_params)
     if @problem.save
-      redirect_to myProblem_path, flash: { success: '問題を作成しました！'}
+      redirect_to myProblems_path, flash: { success: '問題を作成しました！'}
     else
       flash.now[:danger] = '問題を作成できませんでした'
       render :new

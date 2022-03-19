@@ -30,7 +30,7 @@ header {
 
 main {
   width: 800px;
-  margin: 0 auto;
+  margin: 80px auto;
   min-height: calc(100vh - 80px);
   border: 1px solid black;
 }
