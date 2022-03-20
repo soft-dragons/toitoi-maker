@@ -218,6 +218,13 @@ table td {
   cursor: pointer;
 }
 
+.answer-select:hover {
+  transition: 0.2s all;
+  background: #66a8e2;
+  border: 1px solid #66a8e2;
+  color: white;
+}
+
 .problem-edit-button:hover {
   transition: 0.8s all;
   color: rgb(5, 184, 5);
