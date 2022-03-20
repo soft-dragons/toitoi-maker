@@ -19,9 +19,9 @@ class ProblemsController < ApplicationController
 
   def update
     if @problem.update(problem_params)
-      redirect_to problem_path(@problem)
+       redirect_to problem_path(@problem)
     else
-      render :edit
+       render :edit
     end
   end
 
@@ -74,17 +74,6 @@ class ProblemsController < ApplicationController
   end
 
   def test #復習の問題詳細
-    # no_correct_answers = []
-    # answer_list = current_user.answers
-    # answer_list.each do |answer|
-    #   if answer.nil?
-    #     rate = Problem.new.calc_rate(Problem.find(answer.problem_id))
-    #       if rete == 0
-    #         no_correct_answers.push(answer)
-    #       end
-    #   end
-    # end
-    # check_date = 3
     Problem.where(user_id: current_user.id).each do |problem|
       #if problem.answers.where(result: false).any?
       answer = problem.answers.where(user_id: current_user.id).order(id: "DESC").first
