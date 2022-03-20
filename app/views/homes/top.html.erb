@@ -14,8 +14,13 @@
     <%= link_to myProblems_path, data: {"turbolinks" => false}, class: "home-list-text", style: "text-decoration: none;", local: true do %>
       自分の投稿一覧
     <% end %>
-    <%= link_to test_path, data: {"turbolinks" => false}, class: "home-list-text", style: "text-decoration: none;", local: true do %>
+    <%= link_to test_path, data: {"turbolinks" => false}, class: "home-list-text test-list", style: "text-decoration: none;", local: true do %>
       本日の復習
+      <% if @num != 0 %>
+        <div class="home-list-test-num">
+          <%= @num %>
+        </div>
+      <% end %>
     <% end %>
     <div class="home-list-text home-hojo">
       問問道場

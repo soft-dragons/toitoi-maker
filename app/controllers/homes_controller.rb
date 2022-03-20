@@ -13,19 +13,18 @@ class HomesController < ApplicationController
 
        @num = 0
        Problem.where(user_id: current_user.id).each do |problem|
-        answer = problem.answers.where(user_id: current_user.id).order(id: "DESC").first
-        if answer.present?
-          if answer.updated_at <= Date.today && answer.result == "false"
-             @num += 1
+          #if problem.answers.where(result: false).any?
+          answer = problem.answers.where(user_id: current_user.id).order(id: "DESC").first
+          if answer.present?
+            if answer.updated_at <= DateTime.now && answer.result == "false"
+              @num = @num + 1
+            end
+          else
+            if problem.updated_at <= DateTime.now || problem.answers.where(user_id: current_user.id).nil?
+               @num = @num + 1
+            end
           end
-        else
-          if problem.updated_at <= Date.today || problem.answers.where(user_id: current_user.id).nil?
-             @num += 1
-          end
-        end
-      end
-
-
+       end
     end
   end
 
