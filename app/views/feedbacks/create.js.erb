@@ -1,0 +1,21 @@
+document.getElementById('feedback-items').insertAdjacentHTML('afterbegin', '<%= j(render '/problems/feedback', feedback: @feedback, user: @user) %>')
+
+
+var feedbackFormButton = document.getElementById('feedback-form-button');
+var feebackForm = document.getElementById('feeback-form');
+var feebackMask = document.getElementById('feedback-mask');
+feebackForm.style.display = "none";
+feebackMask.style.display = "none";
+feebackMask.classList.remove('mask-anime');
+document.getElementById('feedback_text').value = "";
+
+feedbackFormButton.addEventListener('click', function () {
+  feebackForm.style.display = "block";
+  feebackMask.style.display = "block";
+  feebackMask.classList.add('mask-anime');
+});
+feebackMask.addEventListener('click', function () {
+  feebackForm.style.display = "none";
+  feebackMask.style.display = "none";
+  feebackMask.classList.remove('mask-anime');
+});

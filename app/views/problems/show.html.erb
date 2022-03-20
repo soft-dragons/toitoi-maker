@@ -50,7 +50,7 @@
         <%= link_to edit_problem_path(@problem), data: {"turbolinks" => false}, class: "problem-show-button problem-edit-button", style: "text-decoration: none;", local: true do %>
           編集
         <% end %>
-        <%= link_to problem_path(@problem), data: {"turbolinks" => false}, class: "problem-show-button problem-edit-destroy", style: "text-decoration: none;", method: :delete, local: true, data: { confirm: '問題を削除しますか？' } do %>
+        <%= link_to problem_path(@problem), data: {"turbolinks" => false}, class: "problem-show-button problem-destroy-button", style: "text-decoration: none;", method: :delete, local: true, data: { confirm: '問題を削除しますか？' } do %>
           削除
         <% end %>
       </div>
@@ -60,8 +60,19 @@
     <div class="feedback-form-button" id="feedback-form-button">
       フィードバックする
     </div>
-    <div class="feeback-form" id="feeback-form">
-      <%= form_with model: @feedback, url: problem_feedbacks_path(problem_id: @problem.id), method: :post, local: true do |f| %>
+    <% if @feedbacks.any? %>
+      <h3>
+        フィードバック一覧
+      </h3>
+      <div id="feedback-items">
+        <%= render partial: 'feedback', collection: @feedbacks %>
+      </div>
+    <% end %>
+  </section>
+</section>
+
+<div class="feeback-form" id="feeback-form">
+      <%= form_with model: @feedback, url: problem_feedbacks_path(problem_id: @problem.id), method: :post, remote: true do |f| %>
         <div class="problem-field">
           <div class="problem-label">
             フィードバック
@@ -70,9 +81,8 @@
           <%= f.hidden_field :problem_id, :value => @problem.id %>
           <%= f.text_area :text, autocomplete: "text", class: "problem-form problem-area" %>
         </div>
-
         <div class="problem-submit">
-          <%= f.submit "登録", class: "problem-submit-button" %>
+          <%= f.submit "登　録", class: "problem-submit-button" %>
         </div>
       <% end %>
     </div>
@@ -91,23 +101,3 @@
         feebackMask.classList.remove('mask-anime')
       });
     </script>
-    <% if @feedbacks.any? %>
-      <h3 >
-        フィードバック一覧
-      </h3>
-      <% @feedbacks.each do |feedback| %>
-        <div class="feedback-text">
-          <%= feedback.text %>
-          <% if feedback.user_id == current_user.id %>
-            <%= link_to problem_feedback_path(problem_id: @problem.id, id: feedback.id), data: {"turbolinks" => false}, class: "feedback-delete", style: "text-decoration: none;", method: :delete, local: true, data: { confirm: 'フィードバックを取り消しますか？' } do %>
-              取り消し
-            <% end %>
-          <% end %>
-          <div class="feedback-item">
-            <%= feedback.created_at.strftime('%-Y年%-m月%-d日') %>　<%= feedback.user.name %>さん
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-  </section>
-</section>

@@ -10,7 +10,7 @@ class ProblemsController < ApplicationController
   def create
     @problem = current_user.problems.new(problem_params)
     if @problem.answer_check && @problem.save
-      redirect_to problem_path(@problem), flash: { success: '問題を作成しました！'}
+      redirect_to problem_path(@problem)
     else
       flash.now[:danger] = '問題を作成できませんでした'
       render :new
@@ -19,7 +19,7 @@ class ProblemsController < ApplicationController
 
   def update
     if @problem.update(problem_params)
-      redirect_to problem_path(@problem), flash: { success: '問題を更新しました！'}
+      redirect_to problem_path(@problem)
     else
       render :edit
     end
@@ -55,7 +55,7 @@ class ProblemsController < ApplicationController
 
   def edit #問題の編集画面
     if current_user.id != @problem.user_id
-       redirect_to problem_path(@problem), flash: { danger: '投稿者が異なるため編集できません'}
+       redirect_to problem_path(@problem)
     end
   end
 
@@ -87,20 +87,19 @@ class ProblemsController < ApplicationController
     # check_date = 3
     Problem.where(user_id: current_user.id).each do |problem|
       #if problem.answers.where(result: false).any?
-         answer = problem.answers.where(user_id: current_user.id).order(id: "DESC").first
-         if answer.present?
-            if answer.updated_at <= Date.today && answer.result == "false"
-               @answer = answer
-               break
-            end
-         else
-            if problem.updated_at <= Date.today || problem.answers.where(user_id: current_user.id).nil?
-               @answer = "first"
-               @problem = problem
-               break
-            end
-         end
-      #end
+      answer = problem.answers.where(user_id: current_user.id).order(id: "DESC").first
+      if answer.present?
+        if answer.updated_at <= DateTime.now && answer.result == "false"
+            @answer = answer
+            break
+        end
+      else
+        if problem.updated_at <= DateTime.now || problem.answers.where(user_id: current_user.id).nil?
+            @answer = "first"
+            @problem = problem
+            break
+        end
+      end
     end
     # answerの条件
     # 最新のanswer かつ 最終更新日が3日前 かつ 同じproblem_idのanswerが全てfalseであるもの
