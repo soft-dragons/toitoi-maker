@@ -1,4 +1,8 @@
-document.getElementById('feedback-items').insertAdjacentHTML('afterbegin', '<%= j(render '/problems/feedback', feedback: @feedback, user: @user) %>')
+if (document.getElementById('feedback-title').) {
+  document.getElementById('feedback-items').insertAdjacentHTML('beforebegin', '<h3 id="feedback-title">フィードバック一覧</h3>');
+};
+
+document.getElementById('feedback-items').insertAdjacentHTML('afterbegin', '<%= j(render '/problems/feedback', feedback: @feedback, user: @user) %>');
 
 
 var feedbackFormButton = document.getElementById('feedback-form-button');
