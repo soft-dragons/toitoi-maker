@@ -35,14 +35,18 @@
       <% end %>
     </div>
   </div>
-  <%= link_to edit_user_registration_path, data: {"turbolinks" => false}, class: "header-point-posi", style: "text-decoration: none; color: white;", local: true do %>
+  <div class="header-point-posi">
     <div class="header-user">
       <%= current_user.name %>さん
+      <%= link_to edit_user_registration_path, data: {"turbolinks" => false}, class: "header-user-button", style: "text-decoration: none;", local: true do %>
+        編集
+      <% end %>
     </div>
     <div class="header-point">
       ポイント：<%= current_user.point %>pt
     </div>
-  <% end %>
+  </div>
+  
   <div class="header-rank-posi">
     <div class="header-rank">
       <%= @rank %>位
