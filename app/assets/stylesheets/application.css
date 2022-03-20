@@ -29,6 +29,7 @@ header {
 }
 
 footer {
+  margin-top: 50px;
   height: 80px;
   background: #232f34;
   color: white;
