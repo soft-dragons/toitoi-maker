@@ -12,16 +12,34 @@ class ProblemsController < ApplicationController
     if @problem.answer_check && @problem.save
       redirect_to problem_path(@problem)
     else
-      flash.now[:danger] = '問題を作成できませんでした'
+      @users_array = User.pluck(:name, :point).sort_by(&:last).reverse
+      num = 0
+      @users_array.each do |user|
+        if current_user.name == user[0]
+           @rank = num + 1
+        end
+        num = num + 1
+      end
+      flash.now[:danger] = '全項目が入力され、かつ答えがすべて異なることを確認してください。'
       render :new
     end
   end
 
   def update
-    if @problem.update(problem_params)
-       redirect_to problem_path(@problem)
+    @problem_prot = current_user.problems.new(problem_params)
+    if @problem_prot.answer_check && @problem.update(problem_params)
+      redirect_to problem_path(@problem)
     else
-       render :edit
+      @users_array = User.pluck(:name, :point).sort_by(&:last).reverse
+      num = 0
+      @users_array.each do |user|
+        if current_user.name == user[0]
+           @rank = num + 1
+        end
+        num = num + 1
+      end
+      flash.now[:danger] = '全項目が入力され、かつ答えがすべて異なることを確認してください。'
+      render :edit
     end
   end
 
@@ -65,7 +83,7 @@ class ProblemsController < ApplicationController
 
   def destroy
     @problem.destroy
-    redirect_to myProblems_path, flash: { success: '問題を削除しました'}
+    redirect_to myProblems_path, flash: { danger: '問題を削除しました'}
   end
 
   def test_index #復習の問題一覧

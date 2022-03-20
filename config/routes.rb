@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'test' => 'problems#test',             as: 'test'
   get 'test_index' => 'problems#test_index', as: 'test_index'
   get 'toitoi' => 'problems#toitoi',         as: 'toitoi'
-  resources :problems do
+  resources :problems, except: [:index] do
     resources :answers, only: [:create]
     resources :feedbacks, only: [:create, :update, :destroy]
   end
