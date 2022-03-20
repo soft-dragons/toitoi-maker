@@ -15,9 +15,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    @user = current_user
+    @users_array = User.pluck(:name, :point).sort_by(&:last).reverse
+    num = 0
+    @users_array.each do |user|
+      if current_user.name == user[0]
+        @rank = num + 1
+      end
+      num = num + 1
+    end
+  end
 
   # PUT /resource
   def update
@@ -25,42 +33,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
        @user = current_user
        @point = @user.point
        @user.update(point: @point + params[:point].to_i)
+    else
+      @user = User.find(params[:id])
+      if @user.update(customer_params)
     end
   end
 
-  # DELETE /resource
-  # def destroy
-  #   super
-  # end
+  private
+  # ストロングパラメータ
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
 
-  # GET /resource/cancel
-  # Forces the session data which is usually expired after sign
-  # in to be expired now. This is useful if the user wants to
-  # cancel oauth signing in/up in the middle of the process,
-  # removing all OAuth session data.
-  # def cancel
-  #   super
-  # end
 
-  # protected
-
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-  # end
-
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-  # end
-
-  # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
-
-  # The path used after sign up for inactive accounts.
-  # def after_inactive_sign_up_path_for(resource)
-  #   super(resource)
-  # end
 end
