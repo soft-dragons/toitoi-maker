@@ -150,7 +150,7 @@ a {
 
 .header-point-posi {
   margin: 25px 0 0 25px;
-  width: 150px;
+  width: 200px;
   cursor: pointer;
 }
 
@@ -210,4 +210,25 @@ a {
   text-align: left;
   padding: 10px 0 0 50px;
   overflow: scroll;
+}
+
+.header-user {
+  display: flex;
+}
+
+.header-user-button {
+  width: 50px;
+  margin-left: 20px;
+  text-align: center;
+  border: 1px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+.header-user-button:hover {
+  transition: 0.7s all;
+  background: white;
+  color: #232f34;
+  border: 1px solid #232f34;
 }
