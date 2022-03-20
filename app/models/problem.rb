@@ -44,11 +44,11 @@ class Problem < ApplicationRecord
       rate = calc_rate(problem)
 
       if rate >= 70
-        @high_level.push(problem)
+        @low_level.push(problem)
       elsif rate >= 40
         @medium_level.push(problem)
       else
-        @low_level.push(problem)
+        @high_level.push(problem)
       end
     end
 

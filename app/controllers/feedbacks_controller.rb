@@ -3,9 +3,10 @@ class FeedbacksController < ApplicationController
   before_action :set_feedback, only: [:update, :destroy]
 
   def create
+    @user = current_user
     @feedback = Feedback.new(feedback_params)
     if @feedback.save
-      redirect_to problem_path(@feedback.problem_id)
+      #redirect_to problem_path(@feedback.problem_id)
     else
       @feedback = Feedback.new
       @problem = Problem.find(@feedback.problem_id)

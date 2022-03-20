@@ -48,6 +48,7 @@ a {
   opacity: 0;
   display: none;
   cursor: pointer;
+  z-index: 1;
 }
 
 .mask-anime {
@@ -84,6 +85,7 @@ a {
   top: 0;
   background: #232f34;
   opacity: 0;
+  z-index: 1;
 }
 
 .header-menu-anime {

@@ -1,0 +1,15 @@
+<%# @feedbacks.each do |feedback| %>
+
+  <%# byebug %>
+  <div class="feedback-text">
+    <%= feedback.text %>
+    <% if feedback.user_id == current_user.id %>
+      <%= link_to problem_feedback_path(problem_id: feedback.problem_id, id: feedback.id), data: {"turbolinks" => false}, class: "feedback-delete", style: "text-decoration: none;", method: :delete, local: true, data: { confirm: 'フィードバックを取り消しますか？' } do %>
+        取り消し
+      <% end %>
+    <% end %>
+    <div class="feedback-item">
+      <%= feedback.created_at.strftime('%-Y年%-m月%-d日') %>　<%= feedback.user.name %>さん
+    </div>
+  </div>
+<%# end %>
