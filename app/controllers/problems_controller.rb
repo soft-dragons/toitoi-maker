@@ -26,7 +26,8 @@ class ProblemsController < ApplicationController
   end
 
   def update
-    if @problem.answer_check && @problem.update(problem_params)
+    @problem_prot = current_user.problems.new(problem_params)
+    if @problem_prot.answer_check && @problem.update(problem_params)
       redirect_to problem_path(@problem)
     else
       @users_array = User.pluck(:name, :point).sort_by(&:last).reverse
