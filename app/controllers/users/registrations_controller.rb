@@ -34,20 +34,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
        @point = @user.point
        @user.update!(point: @point + params[:point].to_i)
     else
-        if user_params[:password].nil? || user_params[:password_confirmation].nil?
-          if @user.update!(name: user_params[:name], email: user_params[:email], password: @user.password, password_confirmation: @user.password)
-             bypass_sign_in(@user)
-             redirect_to root_path, flash: { success: 'ユーザー情報を編集しました'}
-          end
-        elsif user_params[:password] != user_params[:password_confirmation]
-              redirect_to edit_user_registration_path, flash: { success: 'パスワードが一致しません'}
-        elsif user_params[:password] == user_params[:password_confirmation] && user_params[:password].present? && user_params[:password_confirmation].present?
-          @user.update!(user_params)
-          bypass_sign_in(@user)
-          redirect_to root_path, flash: { success: 'ユーザー情報を編集しました'}
-        else
-          redirect_to edit_user_registration_path, flash: { success: 'パスワードが一致しないか、存在しません'}
-       end
+      if user_params[:password].nil? || user_params[:password_confirmation].nil?
+        if @user.update!(name: user_params[:name], email: user_params[:email], password: @user.password, password_confirmation: @user.password)
+            bypass_sign_in(@user)
+            redirect_to root_path, flash: { success: 'ユーザー情報を編集しました'}
+        end
+      elsif user_params[:password] != user_params[:password_confirmation]
+            redirect_to edit_user_registration_path, flash: { success: 'パスワードが一致しません'}
+      elsif user_params[:password] == user_params[:password_confirmation] && user_params[:password].present? && user_params[:password_confirmation].present?
+        @user.update!(user_params)
+        bypass_sign_in(@user)
+        redirect_to root_path, flash: { success: 'ユーザー情報を編集しました'}
+      else
+        redirect_to edit_user_registration_path, flash: { success: 'パスワードが一致しないか、存在しません'}
+      end
     end
   end
 
