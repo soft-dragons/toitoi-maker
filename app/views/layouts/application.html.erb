@@ -16,6 +16,9 @@
       <%= render partial: 'layouts/header_items' %>
     </header>
     <main>
+      <div style="text-align: center">
+        <p><font color="red"><%= flash[:danger] %></font></p>
+      </div>
       <%= yield %>
     </main>
   </body>
