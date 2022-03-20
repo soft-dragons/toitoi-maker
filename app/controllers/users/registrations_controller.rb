@@ -29,18 +29,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
+    @user = current_user
     if params[:point].present?
-       @user = current_user
        @point = @user.point
        @user.update(point: @point + params[:point].to_i)
     else
-      @user = User.find(params[:id])
-      if @user.update(customer_params)
+      if @user.update(user_params)
+        bypass_sign_in(@user)
+        redirect_to root_path, flash: { success: 'ユーザー情報を編集しました！'}
+      end
     end
   end
 
   private
-  # ストロングパラメータ
+
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end

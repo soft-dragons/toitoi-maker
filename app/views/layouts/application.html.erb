@@ -16,10 +16,20 @@
       <%= render partial: 'layouts/header_items' %>
     </header>
     <main>
-      <div style="text-align: center">
-        <p><font color="red"><%= flash[:danger] %></font></p>
+      <div style="text-align: center"><br>
+        <% if flash[:success] != nil %>
+          <p><font color="#1e90ff"><%= flash[:success] %></font></p>
+        <% end %>
+        <% if flash[:danger] != nil %>
+          <p><font color="red"><%= flash[:danger] %></font></p>
+        <% end %>
       </div>
       <%= yield %>
     </main>
+    <footer>
+      <div style="text-align: center"><br>
+          <p><font color="white">@ softdragons</font></p>
+      </div>
+    </footer>
   </body>
 </html>
