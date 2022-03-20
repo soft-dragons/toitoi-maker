@@ -60,10 +60,10 @@
     <%= @point %>pt獲得しました！！
   </div>
   <div class="test-buttons">
-    <%= link_to problem_path(@problem), data: {"turbolinks" => false}, class: "test-button", style: "text-decoration: none; color:white;", local: true do %>
+    <%= link_to problem_path(@problem), data: {"turbolinks" => false}, class: "test-button", style: "text-decoration: none;", local: true do %>
       問題詳細へ
     <% end %>
-    <%= link_to toitoi_path(level: params[:level]), data: {"turbolinks" => false}, class: "test-button", style: "text-decoration: none; color:white;", local: true do %>
+    <%= link_to toitoi_path(level: params[:level]), data: {"turbolinks" => false}, class: "test-button", style: "text-decoration: none;", local: true do %>
       次へ
     <% end %>
   </div>

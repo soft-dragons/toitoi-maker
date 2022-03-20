@@ -287,6 +287,7 @@ table td {
   border: 5px solid white;
   color: white;
   display: none;
+  z-index: 1;
 }
 
 .test-body-crrect {
@@ -294,7 +295,7 @@ table td {
 }
 
 .test-body-incrrect {
-  background: #232f34;
+  background: #4a6572;
 }
 
 .test-buttons {
@@ -308,6 +309,11 @@ table td {
   height: 30px;
   border: 1px solid white;
   border-radius: 5px;
+  padding-top: 2px;
+}
+
+.test-button:hover {
+  background: orange;
 }
 
 .feedback-form-button {
@@ -365,4 +371,8 @@ table td {
   width: 80px;
   text-align: center;
   font-size: 13px;
+}
+
+.test-text {
+  margin-top: 20px;
 }

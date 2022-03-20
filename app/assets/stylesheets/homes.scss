@@ -66,6 +66,21 @@ h1 {
   color: white;
 }
 
+.test-list {
+  position: relative;
+}
+
+.home-list-test-num {
+  position: absolute;
+  bottom: 0;
+  right: 20px;
+  border-radius: 50%;
+  border: 1px solid;
+  width: 17px;
+  height: 17px;
+  font-size: 0.5rem;
+}
+
 .home-hojo {
   position: relative;
 }

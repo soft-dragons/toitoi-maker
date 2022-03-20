@@ -58,7 +58,11 @@
   </div>
   <section class="feedback-index">
     <div class="feedback-form-button" id="feedback-form-button">
-      フィードバックする
+      <% if @problem.user_id == current_user.id %>
+        コメントする
+      <% else %>
+        フィードバックする
+      <% end %>
     </div>
     <% if @feedbacks.any? %>
       <h3>
@@ -72,32 +76,32 @@
 </section>
 
 <div class="feeback-form" id="feeback-form">
-      <%= form_with model: @feedback, url: problem_feedbacks_path(problem_id: @problem.id), method: :post, remote: true do |f| %>
-        <div class="problem-field">
-          <div class="problem-label">
-            フィードバック
-          </div>
-          <%= f.hidden_field :user_id, :value => @problem.user_id %>
-          <%= f.hidden_field :problem_id, :value => @problem.id %>
-          <%= f.text_area :text, autocomplete: "text", class: "problem-form problem-area" %>
-        </div>
-        <div class="problem-submit">
-          <%= f.submit "登　録", class: "problem-submit-button" %>
-        </div>
-      <% end %>
+  <%= form_with model: @feedback, url: problem_feedbacks_path(problem_id: @problem.id), method: :post, remote: true do |f| %>
+    <div class="problem-field">
+      <div class="problem-label">
+        フィードバック
+      </div>
+      <%= f.hidden_field :user_id, :value => @problem.user_id %>
+      <%= f.hidden_field :problem_id, :value => @problem.id %>
+      <%= f.text_area :text, autocomplete: "text", class: "problem-form problem-area" %>
     </div>
-    <script>
-      var feedbackFormButton = document.getElementById('feedback-form-button');
-      var feebackForm = document.getElementById('feeback-form');
-      var feebackMask = document.getElementById('feedback-mask');
-      feedbackFormButton.addEventListener('click', function () {
-        feebackForm.style.display = "block";
-        feebackMask.style.display = "block";
-        feebackMask.classList.add('mask-anime')
-      });
-      feebackMask.addEventListener('click', function () {
-        feebackForm.style.display = "none";
-        feebackMask.style.display = "none";
-        feebackMask.classList.remove('mask-anime')
-      });
-    </script>
+    <div class="problem-submit">
+      <%= f.submit "登　録", class: "problem-submit-button" %>
+    </div>
+  <% end %>
+</div>
+<script>
+  var feedbackFormButton = document.getElementById('feedback-form-button');
+  var feebackForm = document.getElementById('feeback-form');
+  var feebackMask = document.getElementById('feedback-mask');
+  feedbackFormButton.addEventListener('click', function () {
+    feebackForm.style.display = "block";
+    feebackMask.style.display = "block";
+    feebackMask.classList.add('mask-anime')
+  });
+  feebackMask.addEventListener('click', function () {
+    feebackForm.style.display = "none";
+    feebackMask.style.display = "none";
+    feebackMask.classList.remove('mask-anime')
+  });
+</script>
