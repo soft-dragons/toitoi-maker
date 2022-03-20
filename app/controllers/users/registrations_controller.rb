@@ -15,52 +15,47 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
-
-  # PUT /resource
-  def update
-    if params[:point].present?
-       @user = current_user
-       @point = @user.point
-       @user.update(point: @point + params[:point].to_i)
+  def edit
+    @user = current_user
+    @users_array = User.pluck(:name, :point).sort_by(&:last).reverse
+    num = 0
+    @users_array.each do |user|
+      if current_user.name == user[0]
+        @rank = num + 1
+      end
+      num = num + 1
     end
   end
 
-  # DELETE /resource
-  # def destroy
-  #   super
-  # end
+  # PUT /resource
+  def update
+    @user = current_user
+    if params[:point].present?
+       @point = @user.point
+       @user.update!(point: @point + params[:point].to_i)
+    else
+        if user_params[:password].nil? || user_params[:password_confirmation].nil?
+          if @user.update!(name: user_params[:name], email: user_params[:email], password: @user.password, password_confirmation: @user.password)
+             bypass_sign_in(@user)
+             redirect_to root_path, flash: { success: 'ユーザー情報を編集しました'}
+          end
+        elsif user_params[:password] != user_params[:password_confirmation]
+              redirect_to edit_user_registration_path, flash: { success: 'パスワードが一致しません'}
+        elsif user_params[:password] == user_params[:password_confirmation] && user_params[:password].present? && user_params[:password_confirmation].present?
+          @user.update!(user_params)
+          bypass_sign_in(@user)
+          redirect_to root_path, flash: { success: 'ユーザー情報を編集しました'}
+        else
+          redirect_to edit_user_registration_path, flash: { success: 'パスワードが一致しないか、存在しません'}
+       end
+    end
+  end
 
-  # GET /resource/cancel
-  # Forces the session data which is usually expired after sign
-  # in to be expired now. This is useful if the user wants to
-  # cancel oauth signing in/up in the middle of the process,
-  # removing all OAuth session data.
-  # def cancel
-  #   super
-  # end
+  private
 
-  # protected
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
 
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-  # end
 
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-  # end
-
-  # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
-
-  # The path used after sign up for inactive accounts.
-  # def after_inactive_sign_up_path_for(resource)
-  #   super(resource)
-  # end
 end

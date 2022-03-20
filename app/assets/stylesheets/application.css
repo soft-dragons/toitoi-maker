@@ -28,6 +28,14 @@ header {
   font-size: 1rem;
 }
 
+footer {
+  margin-top: 50px;
+  height: 80px;
+  background: #232f34;
+  color: white;
+  font-size: 1rem;
+}
+
 main {
   width: 800px;
   margin: 0 auto;

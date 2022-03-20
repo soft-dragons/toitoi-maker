@@ -10,7 +10,11 @@
 }
 
 .problem-title {
-  margin: 30px 0;
+  margin: 30px 0 0 0;
+}
+
+.problem-danger {
+  margin-bottom: 30px;
 }
 
 .new_problem {
@@ -295,7 +299,7 @@ table td {
 }
 
 .test-body-incrrect {
-  background: #4a6572;
+  background: #2f4f4f;
 }
 
 .test-buttons {
@@ -322,19 +326,7 @@ table td {
   background: #66a8e2;
   color: white;
   text-align: center;
-  margin: 0 auto;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.feedback-form-button {
-  width: 200px;
-  height: 30p;
-  background: #66a8e2;
-  color: white;
-  text-align: center;
-  margin: 0 auto;
+  margin: 0 auto 30px;
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #66a8e2;
