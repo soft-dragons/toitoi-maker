@@ -17,8 +17,11 @@
     <%= link_to myProblems_path, data: {"turbolinks" => false}, class: "menu-list-text", style: "text-decoration: none;", local: true do %>
       自分の投稿一覧
     <% end %>
-    <%= link_to test_path, data: {"turbolinks" => false}, class: "menu-list-text", style: "text-decoration: none;", local: true do %>
-      本日の復習<%= @num %>
+    <%= link_to test_path, data: {"turbolinks" => false}, class: "menu-list-text test-list", style: "text-decoration: none;", local: true do %>
+      本日の復習　
+      <% if @num != 0 %>
+        <%= @num %>個
+      <% end %>
     <% end %>
     <div class="menu-list-text" id="toitoi-menu" style="margin: 20px 0 0 0 ;">
       問問道場
